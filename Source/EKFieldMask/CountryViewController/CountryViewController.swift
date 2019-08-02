@@ -135,7 +135,6 @@ extension CountryViewController:UIGestureRecognizerDelegate {
         guard let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
             return true
         }
-        
         if self.tableView.contentOffset.y == 0.0 {
             return gestureRecognizer.velocity(in: gestureRecognizer.view!).y > 0
         }
