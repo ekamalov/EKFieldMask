@@ -1,0 +1,18 @@
+language: objective-c
+osx_image: xcode10.2
+
+cache: bundler
+
+env:
+    global:
+        - PROJECT=EKBuilder.xcodeproj
+        - SCHEME=EKBuilder
+
+install:
+    - gem install xcpretty
+
+
+script:
+    - set -o pipefail
+    - xcodebuild clean build test -project "$PROJECT" -scheme "$SCHEME" -destination "OS=12.0,name=iPhone X" -configuration Debug | xcpretty
+    - bash <(curl -s https://codecov.io/bash) -J 'EKBuilder'

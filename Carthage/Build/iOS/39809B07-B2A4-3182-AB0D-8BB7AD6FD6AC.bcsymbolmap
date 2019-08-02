@@ -1,0 +1,28 @@
+BCSymbolMap Version: 2.0
+_$sSo8NSObjectC9EKBuilderA4CPxycfCTW
+_symbolic $s9EKBuilderAAP
+_$s9EKBuilderAA_pMF
+_$s9EKBuilderMXM
+__swift_FORCE_LOAD_$_swiftUIKit_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftFoundation_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftDarwin_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftObjectiveC_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftCoreFoundation_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftDispatch_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftCoreGraphics_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftCoreImage_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftMetal_$_EKBuilder
+__swift_FORCE_LOAD_$_swiftQuartzCore_$_EKBuilder
+___swift_reflection_version
+Apple LLVM version 10.0.1 (clang-1001.0.46.5)
+<swift-imported-modules>
+/Users/ek/Temporary Docs/EKFieldMask/Carthage/Checkouts/EKBuilder
+Apple Swift version 5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)
+/Users/ek/Temporary Docs/EKFieldMask/Carthage/Checkouts/EKBuilder/Source/EKBuilder/EKBuilder.swift
+init
+<compiler-generated>
+build
+EKBuilder.swift
+/Users/ek/Temporary Docs/EKFieldMask/Carthage/Checkouts/EKBuilder/Source/EKBuilder
+Apple LLVM version 10.0.1 (clang-1001.0.46.4)
+/Users/ek/Library/Caches/org.carthage.CarthageKit/DerivedData/10.3_10G8/EKBuilder/1.0.2/Build/Intermediates.noindex/ArchiveIntermediates/EKBuilder/IntermediateBuildFilesPath/EKBuilder.build/Release-iphoneos/EKBuilder.build/DerivedSources/EKBuilder_vers.c

@@ -1,0 +1,11 @@
+framework module EKBuilder {
+  umbrella header "EKBuilder.h"
+
+  export *
+  module * { export * }
+}
+
+module EKBuilder.Swift {
+    header "EKBuilder-Swift.h"
+    requires objc
+}
