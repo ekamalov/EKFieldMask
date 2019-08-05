@@ -57,9 +57,9 @@ final public class CountryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         wrapperViewHeader.searchTextField.addTarget(self, action: #selector(textFieldTextDidChange), for: .editingChanged)
-    
+        
         self.countries = CountryService.shared.countriesByRelated(related: appearance.relatedCountries)
-
+        
         view.addSubviews(momentumView)
         momentumView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: appearance.momentumViewPadding).isActive = true
         momentumView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -appearance.momentumViewPadding).isActive = true
@@ -165,6 +165,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CountryTableViewCell
         let country = self.countries[indexPath.section].value[indexPath.row]
         cell.update(country, appearance: self.appearance.tableView)
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -175,7 +176,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
+   
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let title:UILabel = .build {
@@ -194,7 +195,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Keyboard notification & searchTextField delegate
 extension CountryViewController: UITextFieldDelegate {
     @objc func textFieldTextDidChange(_ textField: UITextField){
-       self.countries = CountryService.shared.search(textField.text ?? "")
+        self.countries = CountryService.shared.search(textField.text ?? "")
     }
     @objc func adjustForKeyboard(notification: Notification) {
         if notification.name == UIResponder.keyboardWillHideNotification {

@@ -50,10 +50,11 @@ internal class CountryService {
             }
             fatalError("can't find country by cc:\(cc), you can add your contry to CountryCodes.json in Resources group")
         }
+        var tmpCountriesDictionary = countriesDictionary
         if tmpRelated.count > 0 {
-            countriesDictionary.insert((key:"Related", value: tmpRelated), at: 0)
+            tmpCountriesDictionary.insert((key:"Related", value: tmpRelated), at: 0)
         }
-        return countriesDictionary
+        return tmpCountriesDictionary
     }
     
     func filter(_ by: @escaping (Country) -> Bool) -> [Country] {
