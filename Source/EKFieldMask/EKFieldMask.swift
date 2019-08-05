@@ -107,32 +107,34 @@ extension EKFieldMask: UITextFieldDelegate {
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        switch self.type {
-        case .none:
+        if self.type == .none {
             if let char = Array(string).first {
                 self.type = char.isNumber ? .phoneNumber : .email
             }
-        case .email: return true
-        case .phoneNumber:
-            do {
-                var position:Int
-                switch detectTextFieldAction(range: range, string: string) {
-                case .insert:
-                    let tmpPosition = try formatter.insert(contentsOf: Array(string), from: range.location)
-                    position =  tmpPosition.next ?? (tmpPosition.current + 1)
-                case .delete: position = try formatter.delete(at: range.location).current
-                }
-                self.text = formatter.text
-                textField.moveCaret(to: position)
-            }catch EKFormatterThrows.canNotFindEditableNode(description: _){
-                if formatter.status == .clear {
-                    self.type = .none
-                    self.text = nil
-                }else {
-                    Haptic.notification(style: .error).impact()
-                }
-            }catch {}
         }
+        if self.type == .email {
+            return true
+        }
+        
+        do {
+            var position:Int
+            switch detectTextFieldAction(range: range, string: string) {
+            case .insert:
+                let tmpPosition = try formatter.insert(contentsOf: Array(string), from: range.location)
+                position =  tmpPosition.next ?? (tmpPosition.current + 1)
+            case .delete: position = try formatter.delete(at: range.location).current
+            }
+            self.text = formatter.text
+            textField.moveCaret(to: position)
+        }catch EKFormatterThrows.canNotFindEditableNode(description: _){
+            if formatter.status == .clear {
+                self.type = .none
+                self.text = nil
+            }else {
+                Haptic.notification(style: .error).impact()
+            }
+        }catch {}
+        
         return false
     }
     
@@ -149,7 +151,7 @@ extension EKFieldMask: UITextFieldDelegate {
         self.resignFirstResponder()
         return true
     }
-
+    
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         if let caretPosition = formatter.firstEditableNodeIndex, self.type == .phoneNumber {
             textField.moveCaret(to: caretPosition)

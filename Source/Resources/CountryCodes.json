@@ -90,16 +90,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+672-1{dd}-{ddd}",
-      "mask":"+672-1__-___",
-      "cc":"AQ",
-      "name_en":"Australian bases in Antarctica",
-      "dial_code": "672",
-      "desc_en":"",
-      "name_ru":"Австралийская антарктическая база",
-      "desc_ru":""
-   },
-   {
       "pattern":"+54({ddd}){ddd}-{dddd}",
       "mask":"+54(___)___-____",
       "cc":"AR",
@@ -107,16 +97,6 @@
       "dial_code": "54",
       "desc_en":"",
       "name_ru":"Аргентина",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+1(684){ddd}-{dddd}",
-      "mask":"+1(684)___-____",
-      "cc":"AS",
-      "name_en":"American Samoa",
-      "dial_code": "1684",
-      "desc_en":"",
-      "name_ru":"Американское Самоа",
       "desc_ru":""
    },
    {
@@ -390,16 +370,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+682-{dd}-{ddd}",
-      "mask":"+682-__-___",
-      "cc":"CK",
-      "name_en":"Cook Islands",
-      "dial_code": "682",
-      "desc_en":"",
-      "name_ru":"Острова Кука",
-      "desc_ru":""
-   },
-   {
       "pattern":"+56-{d}-{dddd}-{dddd}",
       "mask":"+56-_-____-____",
       "cc":"CL",
@@ -650,16 +620,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+298-{ddd}-{ddd}",
-      "mask":"+298-___-___",
-      "cc":"FO",
-      "dial_code": "298",
-      "name_en":"Faroe Islands",
-      "desc_en":"",
-      "name_ru":"Фарерские острова",
-      "desc_ru":""
-   },
-   {
       "pattern":"+262-{ddddd}-{dddd}",
       "mask":"+262-_____-____",
       "cc":"FR",
@@ -720,16 +680,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+594-{ddddd}-{dddd}",
-      "mask":"+594-_____-____",
-      "cc":"GF",
-      "dial_code": "594",
-      "name_en":"Guiana (French)",
-      "desc_en":"",
-      "name_ru":"Фр. Гвиана",
-      "desc_ru":""
-   },
-   {
       "pattern":"+233({ddd}){ddd}-{ddd}",
       "mask":"+233(___)___-___",
       "cc":"GH",
@@ -747,16 +697,6 @@
       "name_en":"Gibraltar",
       "desc_en":"",
       "name_ru":"Гибралтар",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+299-{dd}-{dd}-{dd}",
-      "mask":"+299-__-__-__",
-      "cc":"GL",
-      "dial_code": "299",
-      "name_en":"Greenland",
-      "desc_en":"",
-      "name_ru":"Гренландия",
       "desc_ru":""
    },
    {
@@ -807,16 +747,6 @@
       "name_en":"Guatemala",
       "desc_en":"",
       "name_ru":"Гватемала",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+1(671){ddd}-{dddd}",
-      "mask":"+1(671)___-____",
-      "cc":"GU",
-      "dial_code": "1671",
-      "name_en":"Guam",
-      "desc_en":"",
-      "name_ru":"Гуам",
       "desc_ru":""
    },
    {
@@ -930,16 +860,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+246-{ddd}-{dddd}",
-      "mask":"+246-___-____",
-      "cc":"IO",
-      "dial_code": "246",
-      "name_en":"Diego Garcia",
-      "desc_en":"",
-      "name_ru":"Диего-Гарсия",
-      "desc_ru":""
-   },
-   {
       "pattern":"+964({ddd}){ddd}-{dddd}",
       "mask":"+964(___)___-____",
       "cc":"IQ",
@@ -1037,16 +957,6 @@
       "dial_code": "855",
       "desc_en":"",
       "name_ru":"Камбоджа",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+686-{dd}-{ddd}",
-      "mask":"+686-__-___",
-      "cc":"KI",
-      "dial_code": "686",
-      "name_en":"Kiribati",
-      "desc_en":"",
-      "name_ru":"Кирибати",
       "desc_ru":""
    },
    {
@@ -1270,16 +1180,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+692-{ddd}-{dddd}",
-      "mask":"+692-___-____",
-      "cc":"MH",
-      "dial_code": "692",
-      "name_en":"Marshall Islands",
-      "desc_en":"",
-      "name_ru":"Маршалловы Острова",
-      "desc_ru":""
-   },
-   {
       "pattern":"+389-{dd}-{ddd}-{ddd}",
       "mask":"+389-__-___-___",
       "cc":"MK",
@@ -1307,26 +1207,6 @@
       "name_en":"Mongolia",
       "desc_en":"",
       "name_ru":"Монголия",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+1(670){ddd}-{dddd}",
-      "mask":"+1(670)___-____",
-      "cc":"MP",
-      "dial_code": "1670",
-      "name_en":"Northern Mariana Islands",
-      "desc_en":"",
-      "name_ru":"Северные Марианские острова Сайпан",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+596({ddd}){dd}-{dd}-{dd}",
-      "mask":"+596(___)__-__-__",
-      "cc":"MQ",
-      "dial_code": "596",
-      "name_en":"Martinique",
-      "desc_en":"",
-      "name_ru":"Мартиника",
       "desc_ru":""
    },
    {
@@ -1430,16 +1310,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+687-{dd}-{dddd}",
-      "mask":"+687-__-____",
-      "cc":"NC",
-      "dial_code": "687",
-      "name_en":"New Caledonia",
-      "desc_en":"",
-      "name_ru":"Новая Каледония",
-      "desc_ru":""
-   },
-   {
       "pattern":"+227-{dd}-{dd}-{dddd}",
       "mask":"+227-__-__-____",
       "cc":"NE",
@@ -1447,16 +1317,6 @@
       "name_en":"Niger",
       "desc_en":"",
       "name_ru":"Нигер",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+672-3{dd}-{ddd}",
-      "mask":"+672-3__-___",
-      "cc":"NF",
-      "dial_code": "672",
-      "name_en":"Norfolk Island",
-      "desc_en":"",
-      "name_ru":"Норфолк (остров)",
       "desc_ru":""
    },
    {
@@ -1507,26 +1367,6 @@
       "name_en":"Nepal",
       "desc_en":"",
       "name_ru":"Непал",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+674-{ddd}-{dddd}",
-      "mask":"+674-___-____",
-      "cc":"NR",
-      "dial_code": "674",
-      "name_en":"Nauru",
-      "desc_en":"",
-      "name_ru":"Науру",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+683-{dddd}",
-      "mask":"+683-____",
-      "cc":"NU",
-      "dial_code": "683",
-      "name_en":"Niue",
-      "desc_en":"",
-      "name_ru":"Ниуэ",
       "desc_ru":""
    },
    {
@@ -1620,16 +1460,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+970-{dd}-{ddd}-{dddd}",
-      "mask":"+970-__-___-____",
-      "cc":"PS",
-      "dial_code": "970",
-      "name_en":"Palestine",
-      "desc_en":"",
-      "name_ru":"Палестина",
-      "desc_ru":""
-   },
-   {
       "pattern":"+351-{dd}-{ddd}-{dddd}",
       "mask":"+351-__-___-____",
       "cc":"PT",
@@ -1667,16 +1497,6 @@
       "name_en":"Qatar",
       "desc_en":"",
       "name_ru":"Катар",
-      "desc_ru":""
-   },
-   {
-      "pattern":"+262-{ddddd}-{dddd}",
-      "mask":"+262-_____-____",
-      "cc":"RE",
-      "dial_code": "262",
-      "name_en":"Reunion",
-      "desc_en":"",
-      "name_ru":"Реюньон",
       "desc_ru":""
    },
    {
@@ -1860,16 +1680,6 @@
       "desc_ru":"мобильные"
    },
    {
-      "pattern":"+211-{dd}-{ddd}-{dddd}",
-      "mask":"+211-__-___-____",
-      "cc":"SS",
-      "dial_code": "211",
-      "name_en":"South Sudan",
-      "desc_en":"",
-      "name_ru":"Южный Судан",
-      "desc_ru":""
-   },
-   {
       "pattern":"+239-{dd}-{ddddd}",
       "mask":"+239-__-_____",
       "cc":"ST",
@@ -1960,16 +1770,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+690-{dddd}",
-      "mask":"+690-____",
-      "cc":"TK",
-      "dial_code": "690",
-      "name_en":"Tokelau",
-      "desc_en":"",
-      "name_ru":"Токелау",
-      "desc_ru":""
-   },
-   {
       "pattern":"+670-{ddd}-{dddd}",
       "mask":"+670-___-____",
       "cc":"TL",
@@ -2028,16 +1828,6 @@
       "desc_en":"",
       "name_ru":"Тринидад и Тобаго",
       "desc_ru":""
-   },
-   {
-      "pattern":"+688-90{dddd}",
-      "mask":"+688-90____",
-      "cc":"TV",
-      "dial_code": "688",
-      "name_en":"Tuvalu ",
-      "desc_en":"mobile",
-      "name_ru":"Тувалу ",
-      "desc_ru":"мобильные"
    },
    {
       "pattern":"+886-{d}-{dddd}-{dddd}",
@@ -2110,16 +1900,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+39-6-698-{ddddd}",
-      "mask":"+39-6-698-_____",
-      "cc":"VA",
-      "dial_code": "379",
-      "name_en":"Vatican City",
-      "desc_en":"",
-      "name_ru":"Ватикан",
-      "desc_ru":""
-   },
-   {
       "pattern":"+1(784){ddd}-{dddd}",
       "mask":"+1(784)___-____",
       "cc":"VC",
@@ -2150,16 +1930,6 @@
       "desc_ru":""
    },
    {
-      "pattern":"+1(340){ddd}-{dddd}",
-      "mask":"+1(340)___-____",
-      "cc":"VI",
-      "dial_code": "1340",
-      "name_en":"US Virgin Islands",
-      "desc_en":"",
-      "name_ru":"Американские Виргинские острова",
-      "desc_ru":""
-   },
-   {
       "pattern":"+84-{dd}-{dddd}-{ddd}",
       "mask":"+84-__-____-___",
       "cc":"VN",
@@ -2178,16 +1948,6 @@
       "desc_en":"mobile",
       "name_ru":"Вануату ",
       "desc_ru":"мобильные"
-   },
-   {
-      "pattern":"+681-{dd}-{dddd}",
-      "mask":"+681-__-____",
-      "cc":"WF",
-      "dial_code": "681",
-      "name_en":"Wallis and Futuna",
-      "desc_en":"",
-      "name_ru":"Уоллис и Футуна",
-      "desc_ru":""
    },
    {
       "pattern":"+685-{dd}-{dddd}",
