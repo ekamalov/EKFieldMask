@@ -10,8 +10,6 @@ import UIKit
 
 final public class CountryViewController: UIViewController {
     
-    private var wrapperViewHeader:CountryWrapperHeader
-    
     private lazy var momentumView: UIView = .build {
         $0.backgroundColor = appearance.momentumViewBackgroundColor
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +30,7 @@ final public class CountryViewController: UIViewController {
     }
     // MARK: - Animation
     private var appearance:EKCountryViewApperance
+    private var wrapperViewHeader:CountryWrapperHeader
     
     private var animator = UIViewPropertyAnimator()
     private var animationProgress: CGFloat = 0
@@ -68,13 +67,13 @@ final public class CountryViewController: UIViewController {
         
         closedTransform = CGAffineTransform(translationX: 0, y: view.bounds.height * 0.8)
         momentumView.transform = closedTransform
-        
-        momentumView.addGestureRecognizer(panGestureRecognizer)
-        tableView.panGestureRecognizer.require(toFail: panGestureRecognizer)
     }
     
     override public func viewDidAppear(_ animated: Bool) {
-        startAnimationIfNeeded(show: true)
+        startAnimationIfNeeded(show: true) {
+            self.momentumView.addGestureRecognizer(self.panGestureRecognizer)
+            self.tableView.panGestureRecognizer.require(toFail: self.panGestureRecognizer)
+        }
     }
     public override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -96,7 +95,7 @@ final public class CountryViewController: UIViewController {
         }
         switch recognizer.state {
         case .began:
-            startAnimationIfNeeded(show: false)
+            startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
         case .changed:
@@ -105,13 +104,14 @@ final public class CountryViewController: UIViewController {
             animator.fractionComplete = fraction + animationProgress
         case .ended, .cancelled:
             let yVelocity = recognizer.velocity(in: momentumView).y
+            print(yVelocity, animator.isReversed)
             if !(yVelocity > 0) && !animator.isReversed {
                 animator.isReversed.toggle()
             }
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
-            animator.continueAnimation(withTimingParameters: nil, durationFactor: 1.5)
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }
     }
@@ -176,7 +176,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return appearance.tableView.sectionHeaderHeight
     }
-   
+    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let title:UILabel = .build {
