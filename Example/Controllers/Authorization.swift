@@ -30,7 +30,7 @@ class Authorization: UIViewController {
     }
   
     @objc func adjustForKeyboard(notification: Notification) {
-        if wrapperView.textField.isEditing {
+        if wrapperView.maskTextField.isEditing {
             if notification.name == UIResponder.keyboardWillHideNotification {
                 self.wrapperView.transform = .identity
                 self.logo.transform = .identity
