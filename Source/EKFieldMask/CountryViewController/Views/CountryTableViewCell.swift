@@ -36,8 +36,6 @@ final public class CountryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         dialCode.textAlignment = .right
-        icon.layer.cornerRadius = 2
-        icon.clipsToBounds = true
         contentView.addSubviews(icon,countryName,dialCode,seperatorLine)
     }
     override public func layoutSubviews() {

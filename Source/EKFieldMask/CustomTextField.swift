@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class CustomTextField: UITextField {
+open class CustomTextField: UITextField{
     internal var appearance:EKTextFieldAppearance! {
         didSet {
             layer.cornerRadius = appearance.cornerRadius
@@ -38,6 +38,7 @@ open class CustomTextField: UITextField {
     }
     
     internal func configure(){
+        addTarget(self, action: #selector(test), for: .editingChanged)
         self.setAppearance(appearance: .init())
     }
     
@@ -46,10 +47,12 @@ open class CustomTextField: UITextField {
         leftView = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size),selector: #selector(leftButtonTap))
     }
     public func setClearButtonImage(image:UIImage) {
-        rightViewMode = .whileEditing
         rightView = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size), selector: #selector(clearButtonTap))
     }
     
+    @objc func test(){
+        rightViewMode = (text?.count ?? 0) > 0 ? .always : .never
+    }
     @objc func leftButtonTap(){}
     @objc func clearButtonTap(){}
     
@@ -62,7 +65,7 @@ open class CustomTextField: UITextField {
         img.addGestureRecognizer(tapGestureRecognizer)
         return img
     }
-   
+    
     @objc open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return .init(x: 15, y: (bounds.height - 27) / 2 , width: 27, height: 27)
     }

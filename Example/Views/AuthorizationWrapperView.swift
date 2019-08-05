@@ -21,11 +21,9 @@ class AuthorizationWrapperView: UIView {
         $0.setTitleColor(Colors.forgot.value, for: .normal)
     }
     lazy var nextBT:UIButton = .build {
-        $0.setTitle("Continue",for: .normal)
-        $0.titleLabel?.font = Fonts.GilroySemiBold.withSize(18)
         $0.layer.cornerRadius = 10
         $0.backgroundColor = Colors.nextButton.value
-        $0.setImage(UIImage(named: "rightArrow"), for: .normal)
+        $0.setImage(UIImage(named: "next-icon"), for: .normal)
     }
     
     lazy var textField:EKFieldMask = .build {
@@ -39,7 +37,6 @@ class AuthorizationWrapperView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
-        nextBT.imageEdgeInsets = .init(top: 10, left: 90, bottom: 10, right: 20)
         self.addSubviews(title,forgotBT,nextBT,textField)
     }
     required init?(coder aDecoder: NSCoder) {

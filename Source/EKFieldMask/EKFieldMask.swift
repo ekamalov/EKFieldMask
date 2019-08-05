@@ -23,6 +23,7 @@ open class EKFieldMask: CustomTextField {
         leftView = view
     }
     var formatter:EKMaskFormatter!
+    
     var country:Country? {
         willSet {
             guard let value = newValue else { return }
@@ -30,7 +31,7 @@ open class EKFieldMask: CustomTextField {
         }
     }
     
-    var type:EKFieldMaskTextType = .none {
+    var type:EKFieldMaskType = .none {
         willSet {
             switch newValue {
             case .email, .none:
@@ -49,7 +50,7 @@ open class EKFieldMask: CustomTextField {
     enum FieldEvent {
         case delete,insert
     }
-    enum EKFieldMaskTextType {
+    enum EKFieldMaskType {
         case email,phoneNumber, none
     }
     
@@ -79,6 +80,7 @@ open class EKFieldMask: CustomTextField {
             self.text = formatter.text
             textFieldDidBeginEditing(self)
         }
+        sendActions(for: .editingChanged)
     }
     override func leftButtonTap() {
         Haptic.impact(style: .light).impact()
@@ -125,11 +127,13 @@ extension EKFieldMask: UITextFieldDelegate {
             case .delete: position = try formatter.delete(at: range.location).current
             }
             self.text = formatter.text
+            sendActions(for: .editingChanged)
             textField.moveCaret(to: position)
         }catch EKFormatterThrows.canNotFindEditableNode(description: _){
             if formatter.status == .clear {
                 self.type = .none
                 self.text = nil
+                sendActions(for: .editingChanged)
             }else {
                 Haptic.notification(style: .error).impact()
             }
