@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class CustomTextField:UITextField {
+open class CustomTextField: UITextField {
     internal var appearance:EKTextFieldAppearance! {
         didSet {
             layer.cornerRadius = appearance.cornerRadius
