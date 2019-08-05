@@ -38,7 +38,7 @@ open class CustomTextField: UITextField{
     }
     
     internal func configure(){
-        addTarget(self, action: #selector(test), for: .editingChanged)
+        addTarget(self, action: #selector(textChanged), for: .editingChanged)
         self.setAppearance(appearance: .init())
     }
     
@@ -50,7 +50,7 @@ open class CustomTextField: UITextField{
         rightView = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size), selector: #selector(clearButtonTap))
     }
     
-    @objc func test(){
+    @objc func textChanged(){
         rightViewMode = (text?.count ?? 0) > 0 ? .always : .never
     }
     @objc func leftButtonTap(){}

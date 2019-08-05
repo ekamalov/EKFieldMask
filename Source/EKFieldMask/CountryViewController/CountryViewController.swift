@@ -42,10 +42,10 @@ final public class CountryViewController: UIViewController {
     private var countries:[(key: String, value: [Country])] = [] { didSet { tableView.reloadData() }}
     private var selected:(_ item: Country) -> Void?
     
-    init(appearance:EKCountryViewApperance = EKCountryViewApperance(), selected: @escaping (_ item: Country) -> Void) {
-        self.appearance = appearance
+    init(appearance:EKCountryViewApperance?, selected: @escaping (_ item: Country) -> Void) {
+        self.appearance = appearance ?? EKCountryViewApperance()
         self.selected = selected
-        self.wrapperViewHeader = .init(appearance: appearance)
+        self.wrapperViewHeader = .init(appearance: self.appearance)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -164,17 +164,17 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CountryTableViewCell
         let country = self.countries[indexPath.section].value[indexPath.row]
-        cell.update(country, appearance: self.appearance.tableView)
+        cell.update(country, appearance: self.appearance.tableView.cell)
         cell.selectionStyle = .none
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return appearance.tableView.cellHeight
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return appearance.tableView.sectionHeaderHeight
     }
    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -187,7 +187,11 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             $0.sizeToFit()
         }
         view.backgroundColor = .white
-        view.addSubview(title)
+        let seperatorLine:UIView = .build {
+            $0.frame = .init(x: 0, y: appearance.tableView.sectionHeaderHeight - 1, width: tableView.bounds.width, height: 1)
+            $0.backgroundColor = appearance.tableView.seperatorLineColor
+        }
+        view.addSubviews(title,seperatorLine)
         return view
     }
 }
