@@ -25,7 +25,7 @@ extension Colors {
         case .authWrapperTitle:
             instanceColor =  .black
         case .nextButton:
-            instanceColor = UIColor.black.withAlphaComponent(0.8)
+            instanceColor = UIColor.black
         case .forgot:
             instanceColor = .black
         case .custom(let red,let green,let blue, let opacity):

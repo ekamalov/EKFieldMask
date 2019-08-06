@@ -14,17 +14,17 @@ final public class CountryTableViewCell: UITableViewCell {
     lazy var dialCode:UILabel = .init(frame: .zero)
     lazy var seperatorLine:UIView = .init(frame: .zero)
     
-    internal var appearance:CountryTableViewAppearance = CountryTableViewAppearance(){
+    internal var appearance:CountryTableViewCellAppearance = CountryTableViewCellAppearance(){
         willSet {
-            countryName.font = newValue.cellTitleFont
-            countryName.textColor = newValue.cellTitleColor
-            dialCode.font = newValue.cellDetailTextFont
-            dialCode.textColor = newValue.cellDetailTextColor
+            countryName.font = newValue.titleFont
+            countryName.textColor = newValue.titleColor
+            dialCode.font = newValue.detailTextFont
+            dialCode.textColor = newValue.detailTextColor
             seperatorLine.backgroundColor = newValue.seperatorLineColor
         }
     }
     
-    internal func update(_ country:Country,appearance:CountryTableViewAppearance){
+    internal func update(_ country:Country,appearance:CountryTableViewCellAppearance){
         self.appearance = appearance
         self.icon.image = UIImage(named: country.cc, in: Bundle.resource, compatibleWith: nil)
         countryName.text = country.localizeName
@@ -36,16 +36,14 @@ final public class CountryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         dialCode.textAlignment = .right
-        icon.layer.cornerRadius = 2
-        icon.clipsToBounds = true
         contentView.addSubviews(icon,countryName,dialCode,seperatorLine)
     }
     override public func layoutSubviews() {
         super.layoutSubviews()
         let yCenter = self.frame.height / 2
-        icon.frame = .init(origin: .init(x: 0, y: yCenter - (appearance.cellIconSize.height / 2)), size: appearance.cellIconSize)
-        countryName.frame.origin = .init(x: icon.frame.maxX + 8, y: yCenter - (appearance.cellTitleFont.lineHeight / 2))
-        dialCode.frame.origin = .init(x: self.frame.width - dialCode.frame.width, y: yCenter - (appearance.cellTitleFont.lineHeight / 2))
+        icon.frame = .init(origin: .init(x: 0, y: yCenter - (appearance.iconSize.height / 2)), size: appearance.iconSize)
+        countryName.frame.origin = .init(x: icon.frame.maxX + 8, y: yCenter - (appearance.titleFont.lineHeight / 2))
+        dialCode.frame.origin = .init(x: self.frame.width - dialCode.frame.width, y: yCenter - (appearance.titleFont.lineHeight / 2))
         seperatorLine.frame = .init(origin: .init(x: 0, y: frame.height - 1), size: .init(width: frame.width, height: 1))
     }
     required init?(coder aDecoder: NSCoder) {

@@ -10,8 +10,6 @@ import UIKit
 
 final public class CountryViewController: UIViewController {
     
-    private var wrapperViewHeader:CountryWrapperHeader
-    
     private lazy var momentumView: UIView = .build {
         $0.backgroundColor = appearance.momentumViewBackgroundColor
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +30,7 @@ final public class CountryViewController: UIViewController {
     }
     // MARK: - Animation
     private var appearance:EKCountryViewApperance
+    private var wrapperViewHeader:CountryWrapperHeader
     
     private var animator = UIViewPropertyAnimator()
     private var animationProgress: CGFloat = 0
@@ -42,10 +41,10 @@ final public class CountryViewController: UIViewController {
     private var countries:[(key: String, value: [Country])] = [] { didSet { tableView.reloadData() }}
     private var selected:(_ item: Country) -> Void?
     
-    init(appearance:EKCountryViewApperance = EKCountryViewApperance(), selected: @escaping (_ item: Country) -> Void) {
-        self.appearance = appearance
+    init(appearance:EKCountryViewApperance?, selected: @escaping (_ item: Country) -> Void) {
+        self.appearance = appearance ?? EKCountryViewApperance()
         self.selected = selected
-        self.wrapperViewHeader = .init(appearance: appearance)
+        self.wrapperViewHeader = .init(appearance: self.appearance)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -57,9 +56,9 @@ final public class CountryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         wrapperViewHeader.searchTextField.addTarget(self, action: #selector(textFieldTextDidChange), for: .editingChanged)
-    
+        
         self.countries = CountryService.shared.countriesByRelated(related: appearance.relatedCountries)
-
+        
         view.addSubviews(momentumView)
         momentumView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: appearance.momentumViewPadding).isActive = true
         momentumView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -appearance.momentumViewPadding).isActive = true
@@ -68,13 +67,13 @@ final public class CountryViewController: UIViewController {
         
         closedTransform = CGAffineTransform(translationX: 0, y: view.bounds.height * 0.8)
         momentumView.transform = closedTransform
-        
-        momentumView.addGestureRecognizer(panGestureRecognizer)
-        tableView.panGestureRecognizer.require(toFail: panGestureRecognizer)
     }
     
     override public func viewDidAppear(_ animated: Bool) {
-        startAnimationIfNeeded(show: true)
+        startAnimationIfNeeded(show: true) {
+            self.momentumView.addGestureRecognizer(self.panGestureRecognizer)
+            self.tableView.panGestureRecognizer.require(toFail: self.panGestureRecognizer)
+        }
     }
     public override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -96,7 +95,7 @@ final public class CountryViewController: UIViewController {
         }
         switch recognizer.state {
         case .began:
-            startAnimationIfNeeded(show: false)
+            startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
         case .changed:
@@ -105,13 +104,14 @@ final public class CountryViewController: UIViewController {
             animator.fractionComplete = fraction + animationProgress
         case .ended, .cancelled:
             let yVelocity = recognizer.velocity(in: momentumView).y
+            print(yVelocity, animator.isReversed)
             if !(yVelocity > 0) && !animator.isReversed {
                 animator.isReversed.toggle()
             }
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
-            animator.continueAnimation(withTimingParameters: nil, durationFactor: 1.5)
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }
     }
@@ -135,7 +135,6 @@ extension CountryViewController:UIGestureRecognizerDelegate {
         guard let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
             return true
         }
-        
         if self.tableView.contentOffset.y == 0.0 {
             return gestureRecognizer.velocity(in: gestureRecognizer.view!).y > 0
         }
@@ -165,16 +164,17 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CountryTableViewCell
         let country = self.countries[indexPath.section].value[indexPath.row]
-        cell.update(country, appearance: self.appearance.tableView)
+        cell.update(country, appearance: self.appearance.tableView.cell)
+        cell.selectionStyle = .none
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return appearance.tableView.cellHeight
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return appearance.tableView.sectionHeaderHeight
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -187,7 +187,11 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             $0.sizeToFit()
         }
         view.backgroundColor = .white
-        view.addSubview(title)
+        let seperatorLine:UIView = .build {
+            $0.frame = .init(x: 0, y: appearance.tableView.sectionHeaderHeight - 1, width: tableView.bounds.width, height: 1)
+            $0.backgroundColor = appearance.tableView.seperatorLineColor
+        }
+        view.addSubviews(title,seperatorLine)
         return view
     }
 }
@@ -195,7 +199,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Keyboard notification & searchTextField delegate
 extension CountryViewController: UITextFieldDelegate {
     @objc func textFieldTextDidChange(_ textField: UITextField){
-       self.countries = CountryService.shared.search(textField.text ?? "")
+        self.countries = CountryService.shared.search(textField.text ?? "")
     }
     @objc func adjustForKeyboard(notification: Notification) {
         if notification.name == UIResponder.keyboardWillHideNotification {

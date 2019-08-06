@@ -200,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				452AF1BC22C38B4200B8C697 /* EKFieldMask */,
+				452A48EF22C6616D002AF9C3 /* Resources */,
 				45FE877022C6473300685317 /* Extensions.swift */,
 				452AF1B422C38ADE00B8C697 /* EKFieldMask.h */,
 				452AF1B522C38ADE00B8C697 /* Info.plist */,
@@ -213,7 +214,6 @@
 				455A744A22DC37290043B337 /* CustomTextField.swift */,
 				452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */,
 				4511EA0D22D3341E00D5B2A6 /* MaskFormatter */,
-				452A48EF22C6616D002AF9C3 /* Resources */,
 				45FE876F22C6471100685317 /* Appearance */,
 				45FE876022C4FB2C00685317 /* CountryViewController */,
 			);
@@ -707,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neuron.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neuron.EKFieldMask.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -729,7 +729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neuron.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neuron.EKFieldMask.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

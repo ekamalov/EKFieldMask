@@ -28,6 +28,25 @@ public struct EKCountryViewApperance:Builder {
     public var tableView:CountryTableViewAppearance = CountryTableViewAppearance()
 }
 
+public struct CountryTableViewAppearance {
+    var headerFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
+    var headerTextColor:UIColor = UIColor.black.withAlphaComponent(0.4)
+    var cell:CountryTableViewCellAppearance = CountryTableViewCellAppearance()
+    var seperatorLineColor:UIColor = UIColor.black.withAlphaComponent(0.1)
+    var cellHeight:CGFloat = 60
+    var sectionHeaderHeight:CGFloat = 50
+}
+
+public struct CountryTableViewCellAppearance {
+    var iconSize:CGSize = .init(width: 20, height: 15)
+    var titleFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
+    var titleColor:UIColor = .init(red: 65/255, green: 78/255, blue: 91/255, alpha: 1)
+    
+    var detailTextFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
+    var detailTextColor:UIColor = .black
+    var seperatorLineColor:UIColor = UIColor.black.withAlphaComponent(0.1)
+}
+
 public struct EKTextFieldAppearance {
     var borderWidth:CGFloat = 1
     var borderColor:UIColor = UIColor.black.withAlphaComponent(0.1)
@@ -40,17 +59,4 @@ public struct EKTextFieldAppearance {
     var tintColor:UIColor = .black
 }
 
-public struct CountryTableViewAppearance {
-    var headerFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
-    var headerTextColor:UIColor = UIColor.black.withAlphaComponent(0.4)
-    
-    var cellIconSize:CGSize = .init(width: 20, height: 15)
-    var cellTitleFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
-    var cellTitleColor:UIColor = .init(red: 65/255, green: 78/255, blue: 91/255, alpha: 1)
-    
-    var cellDetailTextFont:UIFont = UIFont(name: "Gilroy-SemiBold", size: 16) ?? .boldSystemFont(ofSize: 16)
-    var cellDetailTextColor:UIColor = .black
-    
-    var seperatorLineColor:UIColor = UIColor.black.withAlphaComponent(0.1)
-}
 

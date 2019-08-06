@@ -21,14 +21,12 @@ class AuthorizationWrapperView: UIView {
         $0.setTitleColor(Colors.forgot.value, for: .normal)
     }
     lazy var nextBT:UIButton = .build {
-        $0.setTitle("Continue",for: .normal)
-        $0.titleLabel?.font = Fonts.GilroySemiBold.withSize(18)
         $0.layer.cornerRadius = 10
-        $0.backgroundColor = Colors.nextButton.value
-        $0.setImage(UIImage(named: "rightArrow"), for: .normal)
+        $0.backgroundColor = Colors.nextButton.withAlpha(0.8)
+        $0.setImage(UIImage(named: "next-icon"), for: .normal)
     }
     
-    lazy var textField:EKFieldMask = .build {
+    lazy var maskTextField:EKFieldMask = .build {
         $0.font = Fonts.GilroySemiBold.withSize(18)
         $0.placeholder = "E-mail or phone number"
     }
@@ -39,18 +37,23 @@ class AuthorizationWrapperView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
-        nextBT.imageEdgeInsets = .init(top: 10, left: 90, bottom: 10, right: 20)
-        self.addSubviews(title,forgotBT,nextBT,textField)
+        self.addSubviews(title,forgotBT,nextBT,maskTextField)
+        maskTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    @objc func textChanged(){
+        UIView.animate(withDuration: 0.2) {
+            self.nextBT.backgroundColor = (self.maskTextField.text?.count ?? 0) == 0 ? Colors.nextButton.withAlpha(0.8) : Colors.nextButton.value
+        }
+    }
     override func layoutSubviews() {
         self.title.layout { $0.left.top.margin(25).height(32).width(50%) }
         self.forgotBT.layout { $0.bottom(of: self, aligned: .bottom, 25, relation: .equal).centerX().size(width: 42.2%, height: 7.1%) }
         self.nextBT.layout { $0.bottom(of: forgotBT, aligned: .top, 15, relation: .equal).centerX().size(width: 84.6%, height: 22.3%) }
-        self.textField.layout { $0.top(of: title, aligned: .bottom, 15, relation: .equal).centerX().size(width: 84.6%, height: 23.8%) }
+        self.maskTextField.layout { $0.top(of: title, aligned: .bottom, 15, relation: .equal).centerX().size(width: 84.6%, height: 23.8%) }
     }
 }
 

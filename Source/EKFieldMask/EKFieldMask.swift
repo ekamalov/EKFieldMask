@@ -9,18 +9,7 @@
 import UIKit
 
 open class EKFieldMask: CustomTextField {
-    public override func setLeftImage(image: UIImage) {
-        leftViewMode = .always
-        let view = UIView.init(frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size))
-        let img = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: view.frame.size),selector: #selector(leftButtonTap))
-        img.roundedRadius()
-        
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
-        view.layer.shadowOffset = .init(width: 0, height: 1)
-        view.layer.shadowRadius = 8
-        view.addSubview(img)
-        leftView = view
-    }
+    var countryViewAppearance:EKCountryViewApperance?
     var formatter:EKMaskFormatter!
     var country:Country? {
         willSet {
@@ -28,8 +17,7 @@ open class EKFieldMask: CustomTextField {
             setPhoneNumberMask(pattern: value.pattern, mask: value.mask)
         }
     }
-    
-    var type:EKFieldMaskTextType = .none {
+    var type:EKFieldMaskType = .none {
         willSet {
             switch newValue {
             case .email, .none:
@@ -48,10 +36,26 @@ open class EKFieldMask: CustomTextField {
     enum FieldEvent {
         case delete,insert
     }
-    enum EKFieldMaskTextType {
+    enum EKFieldMaskType {
         case email,phoneNumber, none
     }
     
+    public override func setLeftImage(image: UIImage) {
+        leftViewMode = .always
+        let view = UIView.init(frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size))
+        let img = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: view.frame.size),selector: #selector(leftButtonTap))
+        img.roundedRadius()
+        
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .init(width: 0, height: 1)
+        view.layer.shadowRadius = 8
+        view.addSubview(img)
+        leftView = view
+    }
+    public func setCountryViewAppearance(appearance: EKCountryViewApperance){
+        self.countryViewAppearance = appearance
+    }
     internal override func configure(){
         super.configure()
         delegate = self
@@ -78,10 +82,11 @@ open class EKFieldMask: CustomTextField {
             self.text = formatter.text
             textFieldDidBeginEditing(self)
         }
+        sendActions(for: .editingChanged)
     }
     override func leftButtonTap() {
         Haptic.impact(style: .light).impact()
-        let vc = CountryViewController(appearance: EKCountryViewApperance()) { (country) in
+        let vc = CountryViewController(appearance: countryViewAppearance) { (country) in
             self.country = country
             if let img = UIImage(named: country.cc, in: .resource, compatibleWith: nil) {
                 self.setLeftImage(image: img)
@@ -124,11 +129,13 @@ extension EKFieldMask: UITextFieldDelegate {
             case .delete: position = try formatter.delete(at: range.location).current
             }
             self.text = formatter.text
+            sendActions(for: .editingChanged)
             textField.moveCaret(to: position)
         }catch EKFormatterThrows.canNotFindEditableNode(description: _){
             if formatter.status == .clear {
                 self.type = .none
                 self.text = nil
+                sendActions(for: .editingChanged)
             }else {
                 Haptic.notification(style: .error).impact()
             }
