@@ -67,14 +67,15 @@ final public class CountryViewController: UIViewController {
         
         closedTransform = CGAffineTransform(translationX: 0, y: view.bounds.height * 0.8)
         momentumView.transform = closedTransform
+        
     }
-    
-    override public func viewDidAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         startAnimationIfNeeded(show: true) {
             self.momentumView.addGestureRecognizer(self.panGestureRecognizer)
             self.tableView.panGestureRecognizer.require(toFail: self.panGestureRecognizer)
         }
     }
+
     public override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
@@ -104,7 +105,6 @@ final public class CountryViewController: UIViewController {
             animator.fractionComplete = fraction + animationProgress
         case .ended, .cancelled:
             let yVelocity = recognizer.velocity(in: momentumView).y
-            print(yVelocity, animator.isReversed)
             if !(yVelocity > 0) && !animator.isReversed {
                 animator.isReversed.toggle()
             }
@@ -116,7 +116,7 @@ final public class CountryViewController: UIViewController {
         }
     }
     
-    private func startAnimationIfNeeded(show:Bool,duration:Double = 0.8,  _ completion: (() -> Void)? = nil) {
+    private func startAnimationIfNeeded(show:Bool, duration:Double = 0.7, _ completion: (() -> Void)? = nil) {
         if animator.isRunning { return }
         animator = .init(duration: duration, dampingRatio: 0.85)
         animator.addAnimations {
