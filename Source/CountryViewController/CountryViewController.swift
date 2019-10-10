@@ -99,6 +99,7 @@ final public class CountryViewController: UIViewController {
             startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine", in: Bundle.resource, compatibleWith: nil)
         case .changed:
             var fraction = recognizer.translation(in: momentumView).y / closedTransform.ty
             if animator.isReversed { fraction *= -1 }
@@ -111,11 +112,12 @@ final public class CountryViewController: UIViewController {
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
+             self.wrapperViewHeader.dropDownIcon.image = self.appearance.dropDownIcon
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }
     }
-    
+    // FIXME: fix this method
     private func startAnimationIfNeeded(show:Bool, duration:Double = 0.7, _ completion: (() -> Void)? = nil) {
         if animator.isRunning { return }
         animator = .init(duration: duration, dampingRatio: 0.85)

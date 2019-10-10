@@ -62,6 +62,7 @@ open class EKFieldMask: CustomTextField {
         if let clearBTImage = appearance.rightIcon{
             self.setClearButtonImage(image: clearBTImage)
         }
+        print(CountryService.shared.localeCountry())
         self.country = CountryService.shared.localeCountry()
     }
     private func setPhoneNumberMask(pattern:String, mask:String) {

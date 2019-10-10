@@ -199,6 +199,7 @@
 		452AF1B322C38ADE00B8C697 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				45FE876022C4FB2C00685317 /* CountryViewController */,
 				452AF1BC22C38B4200B8C697 /* EKFieldMask */,
 				452A48EF22C6616D002AF9C3 /* Resources */,
 				45FE877022C6473300685317 /* Extensions.swift */,
@@ -215,7 +216,6 @@
 				452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */,
 				4511EA0D22D3341E00D5B2A6 /* MaskFormatter */,
 				45FE876F22C6471100685317 /* Appearance */,
-				45FE876022C4FB2C00685317 /* CountryViewController */,
 			);
 			path = EKFieldMask;
 			sourceTree = "<group>";
@@ -652,6 +652,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,6 +680,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,6 +705,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -725,6 +728,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

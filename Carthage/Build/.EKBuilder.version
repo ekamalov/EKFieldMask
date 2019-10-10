@@ -12,8 +12,8 @@
   "iOS" : [
     {
       "name" : "EKBuilder",
-      "hash" : "794346a5ec52ab6bb5a7d017e593c51f4c532eef1bc68068caec7bda44a3d33e",
-      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
+      "hash" : "cdca3427d548525d232c43b2b8cb02b98823ed98c44cbd965d1e7f73670b932d",
+      "swiftToolchainVersion" : "5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
     }
   ]
 }

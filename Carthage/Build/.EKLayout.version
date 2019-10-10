@@ -12,8 +12,8 @@
   "iOS" : [
     {
       "name" : "EKLayout",
-      "hash" : "25c5a1dd0dc960b59b3b807de0696e31581d4d9036427648736f5516e005dc5a",
-      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
+      "hash" : "a7ba6f8de5481bfad845ceae6e19ecbd4ecd4499803c75568221dce061bffeb1",
+      "swiftToolchainVersion" : "5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
     }
   ]
 }
