@@ -28,10 +28,12 @@ final public class CountryViewController: UIViewController {
         $0.delegate = self
         $0.addTarget(self, action: #selector(handleGesture(_:)))
     }
-    // MARK: - Animation
+    
+    // MARK:  Appearance
     private var appearance:EKCountryViewApperance
     private var wrapperViewHeader:CountryWrapperHeader
     
+    // MARK: - Animation
     private var animator = UIViewPropertyAnimator()
     private var animationProgress: CGFloat = 0
     private var closedTransform:CGAffineTransform = .identity
