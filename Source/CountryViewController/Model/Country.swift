@@ -46,7 +46,7 @@ internal class CountryService {
     func countriesByRelated(related: [String])-> [(key: String, value: [Country])] {
         let tmpRelated:[Country] = related.compactMap { cc in
             if let object = countries.filter({ $0.cc == cc }).first {
-               return object
+                return object
             }
             fatalError("can't find country by cc:\(cc), you can add your contry to CountryCodes.json in Resources group")
         }
@@ -68,7 +68,8 @@ internal class CountryService {
     }
     
     func localeCountry() -> Country? {
-        return filter { $0.cc == Locale.current.regionCode}.first
+        let regionCode:String = Locale.current.regionCode ?? "US"
+        return filter { $0.cc == regionCode }.first
     }
     
     func allCountries(completion:  @escaping (Result<Countries,Error>) -> Void) {

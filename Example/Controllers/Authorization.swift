@@ -13,16 +13,19 @@ class Authorization: UIViewController {
     private lazy var logo = UIImageView(image: #imageLiteral(resourceName: "logo"))
     private lazy var wrapperView = AuthorizationWrapperView()
     
+    private lazy var statusBar = UIImageView(image: UIImage(named: "statusBar"))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         logo.contentMode = .scaleAspectFill
         
-        self.view.addSubviews(wrapperView,logo)
+        self.view.addSubviews(wrapperView, logo, statusBar)
         self.view.backgroundColor = .black
         
         wrapperView.layout { $0.left.right.margin(6.7%).height(260).centerY() }
         logo.layout { $0.bottom(of: wrapperView, aligned: .top, 20, relation: .equal).size(width: 250, height: 150).centerX() }
+        statusBar.layout { $0.left.right.top.margin(0).height(44) }
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -41,7 +44,10 @@ class Authorization: UIViewController {
         }
     }
    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
 }

@@ -28,10 +28,12 @@ final public class CountryViewController: UIViewController {
         $0.delegate = self
         $0.addTarget(self, action: #selector(handleGesture(_:)))
     }
-    // MARK: - Animation
+    
+    // MARK:  Appearance
     private var appearance:EKCountryViewApperance
     private var wrapperViewHeader:CountryWrapperHeader
     
+    // MARK: - Animation
     private var animator = UIViewPropertyAnimator()
     private var animationProgress: CGFloat = 0
     private var closedTransform:CGAffineTransform = .identity
@@ -67,14 +69,15 @@ final public class CountryViewController: UIViewController {
         
         closedTransform = CGAffineTransform(translationX: 0, y: view.bounds.height * 0.8)
         momentumView.transform = closedTransform
+        
     }
-    
-    override public func viewDidAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         startAnimationIfNeeded(show: true) {
             self.momentumView.addGestureRecognizer(self.panGestureRecognizer)
             self.tableView.panGestureRecognizer.require(toFail: self.panGestureRecognizer)
         }
     }
+
     public override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
@@ -98,25 +101,26 @@ final public class CountryViewController: UIViewController {
             startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine", in: Bundle.resource, compatibleWith: nil)
         case .changed:
             var fraction = recognizer.translation(in: momentumView).y / closedTransform.ty
             if animator.isReversed { fraction *= -1 }
             animator.fractionComplete = fraction + animationProgress
         case .ended, .cancelled:
             let yVelocity = recognizer.velocity(in: momentumView).y
-            print(yVelocity, animator.isReversed)
             if !(yVelocity > 0) && !animator.isReversed {
                 animator.isReversed.toggle()
             }
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
+             self.wrapperViewHeader.dropDownIcon.image = self.appearance.dropDownIcon
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }
     }
-    
-    private func startAnimationIfNeeded(show:Bool,duration:Double = 0.8,  _ completion: (() -> Void)? = nil) {
+    // FIXME: fix this method
+    private func startAnimationIfNeeded(show:Bool, duration:Double = 0.7, _ completion: (() -> Void)? = nil) {
         if animator.isRunning { return }
         animator = .init(duration: duration, dampingRatio: 0.85)
         animator.addAnimations {

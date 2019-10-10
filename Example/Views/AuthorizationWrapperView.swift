@@ -24,6 +24,7 @@ class AuthorizationWrapperView: UIView {
         $0.layer.cornerRadius = 10
         $0.backgroundColor = Colors.nextButton.withAlpha(0.8)
         $0.setImage(UIImage(named: "next-icon"), for: .normal)
+        $0.addTarget(self, action: #selector(nextBTAction), for: .touchUpInside)
     }
     
     lazy var maskTextField:EKFieldMask = .build {
@@ -43,6 +44,9 @@ class AuthorizationWrapperView: UIView {
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    @objc func nextBTAction(){
+        self.endEditing(true)
     }
     @objc func textChanged(){
         UIView.animate(withDuration: 0.2) {
