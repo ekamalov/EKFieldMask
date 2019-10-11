@@ -13,25 +13,28 @@ class Authorization: UIViewController {
     private lazy var logo = UIImageView(image: #imageLiteral(resourceName: "logo"))
     private lazy var wrapperView = AuthorizationWrapperView()
     
-    private lazy var statusBar = UIImageView(image: UIImage(named: "statusBar"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // overrideUserInterfaceStyle is available with iOS 13
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
         
         logo.contentMode = .scaleAspectFill
         
-        self.view.addSubviews(wrapperView, logo, statusBar)
+        self.view.addSubviews(wrapperView, logo)
         self.view.backgroundColor = .black
         
         wrapperView.layout { $0.left.right.margin(6.7%).height(260).centerY() }
         logo.layout { $0.bottom(of: wrapperView, aligned: .top, 20, relation: .equal).size(width: 250, height: 150).centerX() }
-        statusBar.layout { $0.left.right.top.margin(0).height(44) }
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
-  
+    
     @objc func adjustForKeyboard(notification: Notification) {
         if wrapperView.maskTextField.isEditing {
             if notification.name == UIResponder.keyboardWillHideNotification {
@@ -43,11 +46,7 @@ class Authorization: UIViewController {
             }
         }
     }
-   
-    override var prefersStatusBarHidden: Bool {
-        return true
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
 }
