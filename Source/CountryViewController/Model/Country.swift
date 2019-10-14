@@ -1,9 +1,25 @@
 //
-//  Country.swift
-//  EKFieldMask
+//  The MIT License (MIT)
 //
-//  Created by Erik Kamalov on 6/29/19.
-//  Copyright © 2019 Neuron. All rights reserved.
+//  Copyright (c) 2019 Erik Kamalov <ekamalov967@gmail.com>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import Foundation
@@ -13,12 +29,14 @@ typealias Countries = [Country]
 struct Country: Codable, Equatable {
     let pattern, mask, cc, nameEn: String
     let dialCode,nameRu: String
+    
     enum CodingKeys: String, CodingKey {
         case pattern, mask, cc
         case nameEn = "name_en" 
         case dialCode = "dial_code"
         case nameRu = "name_ru"
     }
+    
     var localizeName:String {
         if let languageCode = Locale.current.languageCode {
             return languageCode == "ru" ? self.nameRu : self.nameEn
@@ -28,10 +46,12 @@ struct Country: Codable, Equatable {
 }
 
 internal class CountryService {
+    // MARK: - Attributes
     static let shared = CountryService()
     private var countries:Countries = []
     private var countriesDictionary:[(key: String, value: [Country])] = []
     
+    // MARK: - Initializers
     private init()  {
         self.allCountries { (result) in
             switch result {
@@ -57,10 +77,6 @@ internal class CountryService {
         return tmpCountriesDictionary
     }
     
-    func filter(_ by: @escaping (Country) -> Bool) -> [Country] {
-        return countries.filter { by($0) }
-    }
-    
     func search(_ by:String) -> [(key: String, value: [Country])] {
         if by.count == 0 { return countriesDictionary }
         let filteredData = countries.filter { $0.localizeName.lowercased().contains(by.lowercased())}
@@ -69,10 +85,11 @@ internal class CountryService {
     
     func localeCountry() -> Country? {
         let regionCode:String = Locale.current.regionCode ?? "US"
-        return filter { $0.cc == regionCode }.first
+        return countries.filter { $0.cc == regionCode }.first
     }
     
-    func allCountries(completion:  @escaping (Result<Countries,Error>) -> Void) {
+    // MARK: - Parsers
+    private func allCountries(completion:  @escaping (Result<Countries,Error>) -> Void) {
         if let path = Bundle.main.path(forResource: "CountryCodes", ofType: "json") {
             do {
                 let fileUrl = URL(fileURLWithPath: path)
