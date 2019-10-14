@@ -1,17 +1,35 @@
 //
-//  EKMaskFormatter.swift
-//  EKFieldMask
+//  The MIT License (MIT)
 //
-//  Created by Erik Kamalov on 6/26/19.
-//  Copyright © 2019 Neuron. All rights reserved.
+//  Copyright (c) 2019 Erik Kamalov <ekamalov967@gmail.com>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import Foundation
 
 public struct EKMaskFormatter {
+    // MARK: - Properties
     var pattern: String
     var mask: String
     
+    // MARK: - Initializers
     init(pattern: String, mask: String) throws {
         self.pattern = pattern
         self.mask = mask
@@ -22,6 +40,7 @@ public struct EKMaskFormatter {
     private var charactersNode:[EKFieldCharacter] = []
     private let maskTemplateDefault: Character = "*" , leftBrackets: Character = "{" , rightBrackets: Character = "}"
     
+    // MARK: - Set up
     mutating private func configuration() throws {
         charactersNode.removeAll()
         pattern.filter { $0 != self.leftBrackets && $0 != self.rightBrackets }.enumerated().forEach { index,char in
@@ -37,6 +56,7 @@ public struct EKMaskFormatter {
         }
     }
 }
+// MARK: - Extensions
 public extension EKMaskFormatter {
     mutating func clearMask() {
         self.charactersNode.filter { $0.isEditable }.forEach { _ in
@@ -62,7 +82,7 @@ public extension EKMaskFormatter {
         if index == nil, let actNode = actuallyNode, actNode.value.value != nil {
             lastNode.current = charactersNode.nextEditableElement(index: actNode.index, checker: { $0.isEditable && $0.value == nil })?.index ?? 0
         }
-    
+        
         for char in newCharacters {
             lastNode = try self.insert(char, at: lastNode.next ?? lastNode.current)
             if lastNode.next == nil, let nextPosition = charactersNode.nextEditableElement(index: lastNode.current, checker: { $0.isEditable })?.index {

@@ -9,27 +9,17 @@
 /* Begin PBXBuildFile section */
 		4511EA0722CC92F600D5B2A6 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4511EA0522CC92F600D5B2A6 /* Gilroy-SemiBold.ttf */; };
 		4511EA0822CC92F600D5B2A6 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4511EA0622CC92F600D5B2A6 /* Gilroy-Bold.ttf */; };
-		4511EA0C22CDD24800D5B2A6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877022C6473300685317 /* Extensions.swift */; };
 		4511EA0F22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511EA0E22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift */; };
-		4511EA1022D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511EA0E22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift */; };
 		452A48E922C652DC002AF9C3 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48E822C652DC002AF9C3 /* CountryViewController.swift */; };
 		452A48F122C66196002AF9C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A48F022C66196002AF9C3 /* Assets.xcassets */; };
 		452A48FE22C73AC0002AF9C3 /* EKFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */; };
-		452A490D22C74D85002AF9C3 /* EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877222C6476000685317 /* EKAppearance.swift */; };
-		452A490E22C74D85002AF9C3 /* EKFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */; };
-		452A490F22C74D85002AF9C3 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48E822C652DC002AF9C3 /* CountryViewController.swift */; };
-		452A491022C74D85002AF9C3 /* EKFieldCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1D322C38CEF00B8C697 /* EKFieldCharacter.swift */; };
-		452A491322C74D85002AF9C3 /* EKMaskFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1DC22C38D2500B8C697 /* EKMaskFormatter.swift */; };
-		452A491622C74D85002AF9C3 /* ErrorsToThrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1E522C38D4300B8C697 /* ErrorsToThrow.swift */; };
 		452A491922C75108002AF9C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A48F022C66196002AF9C3 /* Assets.xcassets */; };
 		452A491B22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A491A22C75403002AF9C3 /* CountryTableViewCell.swift */; };
-		452A491C22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A491A22C75403002AF9C3 /* CountryTableViewCell.swift */; };
 		452A492122C7557C002AF9C3 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 452A492022C7557C002AF9C3 /* CountryCodes.json */; };
 		452A492222C7557C002AF9C3 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 452A492022C7557C002AF9C3 /* CountryCodes.json */; };
 		452A492422C755A2002AF9C3 /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A492322C755A2002AF9C3 /* CountryFlags.xcassets */; };
 		452A492522C755A2002AF9C3 /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A492322C755A2002AF9C3 /* CountryFlags.xcassets */; };
 		452A492822C75931002AF9C3 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A492722C75931002AF9C3 /* Country.swift */; };
-		452A492922C75931002AF9C3 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A492722C75931002AF9C3 /* Country.swift */; };
 		452AF1B622C38ADE00B8C697 /* EKFieldMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 452AF1B422C38ADE00B8C697 /* EKFieldMask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		452AF1C422C38B5000B8C697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1C322C38B5000B8C697 /* AppDelegate.swift */; };
 		452AF1C622C38B5000B8C697 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1C522C38B5000B8C697 /* Authorization.swift */; };
@@ -40,17 +30,15 @@
 		452AF1E622C38D4300B8C697 /* ErrorsToThrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1E522C38D4300B8C697 /* ErrorsToThrow.swift */; };
 		452AF20822C3931400B8C697 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 452AF20622C3931400B8C697 /* Cartfile */; };
 		455A744B22DC37290043B337 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A744A22DC37290043B337 /* CustomTextField.swift */; };
-		455A744C22DC37540043B337 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A744A22DC37290043B337 /* CustomTextField.swift */; };
 		4584FDE522D33936004B926C /* EKNodePositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FDE422D33936004B926C /* EKNodePositions.swift */; };
-		4584FDE622D33936004B926C /* EKNodePositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FDE422D33936004B926C /* EKNodePositions.swift */; };
 		4584FE3322DB7711004B926C /* CountryWrapperHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FE3222DB7711004B926C /* CountryWrapperHeader.swift */; };
-		4584FE3422DB7711004B926C /* CountryWrapperHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FE3222DB7711004B926C /* CountryWrapperHeader.swift */; };
+		45CDBB3A23543BD9009289BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48F622C6643A002AF9C3 /* Extensions.swift */; };
+		45D8DBCF2350C05100736A0F /* EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877222C6476000685317 /* EKAppearance.swift */; };
 		45FE875622C49BB800685317 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45FE875422C49BB800685317 /* Gilroy-Bold.ttf */; };
 		45FE875722C49BB800685317 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45FE875522C49BB800685317 /* Gilroy-SemiBold.ttf */; };
 		45FE875922C49BD600685317 /* AppApearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE875822C49BD600685317 /* AppApearance.swift */; };
 		45FE875D22C49C5E00685317 /* AuthorizationWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE875C22C49C5E00685317 /* AuthorizationWrapperView.swift */; };
 		45FE877122C6473300685317 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877022C6473300685317 /* Extensions.swift */; };
-		45FE877422C6486000685317 /* EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877222C6476000685317 /* EKAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -201,6 +189,7 @@
 			children = (
 				45FE876022C4FB2C00685317 /* CountryViewController */,
 				452AF1BC22C38B4200B8C697 /* EKFieldMask */,
+				45FE876F22C6471100685317 /* Appearance */,
 				452A48EF22C6616D002AF9C3 /* Resources */,
 				45FE877022C6473300685317 /* Extensions.swift */,
 				452AF1B422C38ADE00B8C697 /* EKFieldMask.h */,
@@ -215,7 +204,6 @@
 				455A744A22DC37290043B337 /* CustomTextField.swift */,
 				452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */,
 				4511EA0D22D3341E00D5B2A6 /* MaskFormatter */,
-				45FE876F22C6471100685317 /* Appearance */,
 			);
 			path = EKFieldMask;
 			sourceTree = "<group>";
@@ -334,8 +322,8 @@
 				452AF1BD22C38B4F00B8C697 /* Sources */,
 				452AF1BE22C38B4F00B8C697 /* Frameworks */,
 				452AF1BF22C38B4F00B8C697 /* Resources */,
-				452AF20B22C395A300B8C697 /* Carthage script */,
 				452AF20F22C395CD00B8C697 /* Embed Frameworks */,
+				452AF20B22C395A300B8C697 /* Carthage script */,
 				452AF21422C3AE0600B8C697 /* Xcode Note */,
 			);
 			buildRules = (
@@ -465,7 +453,6 @@
 			files = (
 				455A744B22DC37290043B337 /* CustomTextField.swift in Sources */,
 				4584FDE522D33936004B926C /* EKNodePositions.swift in Sources */,
-				45FE877422C6486000685317 /* EKAppearance.swift in Sources */,
 				452A48E922C652DC002AF9C3 /* CountryViewController.swift in Sources */,
 				452AF1DD22C38D2500B8C697 /* EKMaskFormatter.swift in Sources */,
 				4511EA0F22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */,
@@ -475,6 +462,7 @@
 				452AF1E622C38D4300B8C697 /* ErrorsToThrow.swift in Sources */,
 				452A491B22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */,
 				452A492822C75931002AF9C3 /* Country.swift in Sources */,
+				45D8DBCF2350C05100736A0F /* EKAppearance.swift in Sources */,
 				452A48FE22C73AC0002AF9C3 /* EKFieldMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,23 +471,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452A491C22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */,
-				4511EA0C22CDD24800D5B2A6 /* Extensions.swift in Sources */,
-				4584FDE622D33936004B926C /* EKNodePositions.swift in Sources */,
+				45CDBB3A23543BD9009289BE /* Extensions.swift in Sources */,
 				45FE875922C49BD600685317 /* AppApearance.swift in Sources */,
-				452A490F22C74D85002AF9C3 /* CountryViewController.swift in Sources */,
-				452A492922C75931002AF9C3 /* Country.swift in Sources */,
 				45FE875D22C49C5E00685317 /* AuthorizationWrapperView.swift in Sources */,
-				452A490D22C74D85002AF9C3 /* EKAppearance.swift in Sources */,
-				455A744C22DC37540043B337 /* CustomTextField.swift in Sources */,
 				452AF1C622C38B5000B8C697 /* Authorization.swift in Sources */,
-				452A491622C74D85002AF9C3 /* ErrorsToThrow.swift in Sources */,
-				452A491322C74D85002AF9C3 /* EKMaskFormatter.swift in Sources */,
 				452AF1C422C38B5000B8C697 /* AppDelegate.swift in Sources */,
-				4511EA1022D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */,
-				4584FE3422DB7711004B926C /* CountryWrapperHeader.swift in Sources */,
-				452A491022C74D85002AF9C3 /* EKFieldCharacter.swift in Sources */,
-				452A490E22C74D85002AF9C3 /* EKFieldMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

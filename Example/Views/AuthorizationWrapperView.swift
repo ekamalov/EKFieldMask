@@ -8,6 +8,8 @@
 
 import UIKit
 import EKLayout
+import EKFieldMask
+import EKBuilder
 
 class AuthorizationWrapperView: UIView {
     lazy var title:UILabel = .build {
@@ -31,28 +33,29 @@ class AuthorizationWrapperView: UIView {
         $0.font = Fonts.GilroySemiBold.withSize(18)
         $0.placeholder = "E-mail or phone number"
     }
-    
-    var formatter:EKMaskFormatter!
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.addSubviews(title,forgotBT,nextBT,maskTextField)
         maskTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
-        
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     @objc func nextBTAction(){
         self.endEditing(true)
     }
+    
     @objc func textChanged(){
         UIView.animate(withDuration: 0.2) {
             self.nextBT.backgroundColor = (self.maskTextField.text?.count ?? 0) == 0 ? Colors.nextButton.withAlpha(0.8) : Colors.nextButton.value
         }
     }
+    
     override func layoutSubviews() {
         self.title.layout { $0.left.top.margin(25).height(32).width(50%) }
         self.forgotBT.layout { $0.bottom(of: self, aligned: .bottom, 25, relation: .equal).centerX().size(width: 42.2%, height: 7.1%) }

@@ -1,19 +1,35 @@
 //
-//  Extensions.swift
-//  EKFieldMask
+//  The MIT License (MIT)
 //
-//  Created by Erik Kamalov on 6/28/19.
-//  Copyright © 2019 Neuron. All rights reserved.
+//  Copyright (c) 2019 Erik Kamalov <ekamalov967@gmail.com>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import UIKit
 
-/// MARK: - Builder, you can look documentation in GitHub(https://github.com/erikkamalov/EKBuilder.git)
-public protocol Builder {
+/// MARK: - Builder, you can look documentation in GitHub(https://github.com/ekamalov/EKBuilder.git)
+internal protocol Builder {
     init()
 }
 extension Builder {
-    public static func build(_ block: (inout Self) throws -> Void) rethrows -> Self {
+    internal static func build(_ block: (inout Self) throws -> Void) rethrows -> Self {
         var copy = Self.self.init()
         try block(&copy)
         return copy
@@ -21,29 +37,13 @@ extension Builder {
 }
 extension NSObject: Builder {}
 
-extension UIView {
+internal extension UIView {
     func addSubviews(_ views:UIView...){
         views.forEach { addSubview($0) }
     }
 }
 
-extension String {
-    subscript (i: Int) -> Character {
-        return self[index(startIndex, offsetBy: i)]
-    }
-}
-
-
-extension UITextField {
-    func moveCaret(to position:Int) {
-        guard let caretPosition = self.position(from: self.beginningOfDocument, offset: position) else {
-            return
-        }
-        self.selectedTextRange = self.textRange(from: caretPosition, to: caretPosition)
-    }
-}
-
-public extension Bundle {
+internal extension Bundle {
     class var resource:Bundle {
         let bundle = Bundle(for: EKFieldMask.self)
         
@@ -55,7 +55,7 @@ public extension Bundle {
     }
 }
 
-extension UIViewController {
+internal extension UIViewController {
     func topMostViewController() -> UIViewController {
         if let presented = self.presentedViewController {
             return presented.topMostViewController()
@@ -72,29 +72,15 @@ extension UIViewController {
         return self
     }
 }
-extension UIApplication {
+internal extension UIApplication {
     func topMostViewController() -> UIViewController? {
         return self.keyWindow?.rootViewController?.topMostViewController()
     }
 }
 
-extension UIView {
-    func roundedRadius() {
-        self.layer.cornerRadius = self.frame.size.width / 2
-        self.clipsToBounds = true
-    }
-    func shake(duration:Double = 0.07, repeatCount:Float = 2, offset:CGFloat = 2){
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = duration
-        animation.repeatCount = repeatCount
-        animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - offset, y: self.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + offset, y: self.center.y))
-        self.layer.add(animation, forKey: "position")
-    }
-}
 
-enum Haptic {
+
+internal enum Haptic {
     case impact(style: UIImpactFeedbackGenerator.FeedbackStyle)
     case notification(style: UINotificationFeedbackGenerator.FeedbackType)
     case selection

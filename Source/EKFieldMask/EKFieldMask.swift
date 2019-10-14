@@ -1,14 +1,31 @@
 //
-//  SearchTextField.swift
-//  Example
+//  The MIT License (MIT)
 //
-//  Created by Erik Kamalov on 6/29/19.
-//  Copyright © 2019 Neuron. All rights reserved.
+//  Copyright (c) 2019 Erik Kamalov <ekamalov967@gmail.com>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import UIKit
 
 open class EKFieldMask: CustomTextField {
+    // MARK: - Properties
     var countryViewAppearance:EKCountryViewApperance?
     var formatter:EKMaskFormatter!
     var country:Country? {
@@ -39,12 +56,15 @@ open class EKFieldMask: CustomTextField {
     enum EKFieldMaskType {
         case email,phoneNumber, none
     }
-    
+    // MARK: - Set up
     public override func setLeftImage(image: UIImage) {
         leftViewMode = .always
         let view = UIView.init(frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size))
-        let img = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: view.frame.size),selector: #selector(leftButtonTap))
-        img.roundedRadius()
+        let img = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: view.frame.size),
+                                            selector: #selector(leftButtonTap))
+        
+        img.layer.cornerRadius = img.frame.size.width / 2
+        img.clipsToBounds = true
         
         view.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
         view.layer.shadowOpacity = 1
@@ -59,7 +79,7 @@ open class EKFieldMask: CustomTextField {
     internal override func configure(){
         super.configure()
         delegate = self
-        if let clearBTImage = appearance.rightIcon{
+        if let clearBTImage = appearance.clearButtonIcon{
             self.setClearButtonImage(image: clearBTImage)
         }
         self.country = CountryService.shared.localeCountry()
@@ -72,6 +92,7 @@ open class EKFieldMask: CustomTextField {
         }catch { }
     }
     
+    // MARK: - Actions
     override func clearButtonTap() {
         Haptic.notification(style: .warning).impact()
         if formatter?.status == .clear {
@@ -102,7 +123,7 @@ open class EKFieldMask: CustomTextField {
     }
 }
 
-// MARK: - Delegates
+// MARK: - Extensions & Delegate
 extension EKFieldMask: UITextFieldDelegate {
     private func detectTextFieldAction(range: NSRange, string: String) -> FieldEvent {
         let char = string.cString(using: String.Encoding.utf8)!
@@ -162,5 +183,17 @@ extension EKFieldMask: UITextFieldDelegate {
         if let caretPosition = formatter.firstEditableNodeIndex, self.type == .phoneNumber {
             textField.moveCaret(to: caretPosition)
         }
+    }
+}
+
+private extension UIView {
+    func shake(duration:Double = 0.07, repeatCount:Float = 2, offset:CGFloat = 2){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = duration
+        animation.repeatCount = repeatCount
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - offset, y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + offset, y: self.center.y))
+        self.layer.add(animation, forKey: "position")
     }
 }
