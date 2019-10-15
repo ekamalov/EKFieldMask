@@ -28,17 +28,17 @@
 		452AF1D422C38CEF00B8C697 /* EKFieldCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1D322C38CEF00B8C697 /* EKFieldCharacter.swift */; };
 		452AF1DD22C38D2500B8C697 /* EKMaskFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1DC22C38D2500B8C697 /* EKMaskFormatter.swift */; };
 		452AF1E622C38D4300B8C697 /* ErrorsToThrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1E522C38D4300B8C697 /* ErrorsToThrow.swift */; };
-		452AF20822C3931400B8C697 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 452AF20622C3931400B8C697 /* Cartfile */; };
 		455A744B22DC37290043B337 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A744A22DC37290043B337 /* CustomTextField.swift */; };
 		4584FDE522D33936004B926C /* EKNodePositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FDE422D33936004B926C /* EKNodePositions.swift */; };
 		4584FE3322DB7711004B926C /* CountryWrapperHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584FE3222DB7711004B926C /* CountryWrapperHeader.swift */; };
 		45CDBB3A23543BD9009289BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48F622C6643A002AF9C3 /* Extensions.swift */; };
 		45D8DBCF2350C05100736A0F /* EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877222C6476000685317 /* EKAppearance.swift */; };
+		45DCF607235580A2005EB4C4 /* Cartfile.private in Resources */ = {isa = PBXBuildFile; fileRef = 45DCF60323557F80005EB4C4 /* Cartfile.private */; };
 		45FE875622C49BB800685317 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45FE875422C49BB800685317 /* Gilroy-Bold.ttf */; };
 		45FE875722C49BB800685317 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45FE875522C49BB800685317 /* Gilroy-SemiBold.ttf */; };
 		45FE875922C49BD600685317 /* AppApearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE875822C49BD600685317 /* AppApearance.swift */; };
 		45FE875D22C49C5E00685317 /* AuthorizationWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE875C22C49C5E00685317 /* AuthorizationWrapperView.swift */; };
-		45FE877122C6473300685317 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877022C6473300685317 /* Extensions.swift */; };
+		45FE877122C6473300685317 /* EKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE877022C6473300685317 /* EKExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,15 +78,15 @@
 		452AF1D322C38CEF00B8C697 /* EKFieldCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKFieldCharacter.swift; sourceTree = "<group>"; };
 		452AF1DC22C38D2500B8C697 /* EKMaskFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKMaskFormatter.swift; sourceTree = "<group>"; };
 		452AF1E522C38D4300B8C697 /* ErrorsToThrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsToThrow.swift; sourceTree = "<group>"; };
-		452AF20622C3931400B8C697 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		455A744A22DC37290043B337 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4584FDE422D33936004B926C /* EKNodePositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKNodePositions.swift; sourceTree = "<group>"; };
 		4584FE3222DB7711004B926C /* CountryWrapperHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryWrapperHeader.swift; sourceTree = "<group>"; };
+		45DCF60323557F80005EB4C4 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = "<group>"; };
 		45FE875422C49BB800685317 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 		45FE875522C49BB800685317 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		45FE875822C49BD600685317 /* AppApearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppApearance.swift; sourceTree = "<group>"; };
 		45FE875C22C49C5E00685317 /* AuthorizationWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationWrapperView.swift; sourceTree = "<group>"; };
-		45FE877022C6473300685317 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		45FE877022C6473300685317 /* EKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKExtensions.swift; sourceTree = "<group>"; };
 		45FE877222C6476000685317 /* EKAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,7 +168,7 @@
 		452AF1A722C38ADE00B8C697 = {
 			isa = PBXGroup;
 			children = (
-				452AF20622C3931400B8C697 /* Cartfile */,
+				45DCF60323557F80005EB4C4 /* Cartfile.private */,
 				452AF1C222C38B5000B8C697 /* Example */,
 				452AF1B322C38ADE00B8C697 /* Source */,
 				452AF1B222C38ADE00B8C697 /* Products */,
@@ -191,7 +191,7 @@
 				452AF1BC22C38B4200B8C697 /* EKFieldMask */,
 				45FE876F22C6471100685317 /* Appearance */,
 				452A48EF22C6616D002AF9C3 /* Resources */,
-				45FE877022C6473300685317 /* Extensions.swift */,
+				45FE877022C6473300685317 /* EKExtensions.swift */,
 				452AF1B422C38ADE00B8C697 /* EKFieldMask.h */,
 				452AF1B522C38ADE00B8C697 /* Info.plist */,
 			);
@@ -393,7 +393,7 @@
 				452AF1CE22C38B5000B8C697 /* LaunchScreen.storyboard in Resources */,
 				452AF1CB22C38B5000B8C697 /* Assets.xcassets in Resources */,
 				452A492522C755A2002AF9C3 /* CountryFlags.xcassets in Resources */,
-				452AF20822C3931400B8C697 /* Cartfile in Resources */,
+				45DCF607235580A2005EB4C4 /* Cartfile.private in Resources */,
 				452A492222C7557C002AF9C3 /* CountryCodes.json in Resources */,
 				45FE875722C49BB800685317 /* Gilroy-SemiBold.ttf in Resources */,
 				452A491922C75108002AF9C3 /* Assets.xcassets in Resources */,
@@ -458,7 +458,7 @@
 				4511EA0F22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */,
 				4584FE3322DB7711004B926C /* CountryWrapperHeader.swift in Sources */,
 				452AF1D422C38CEF00B8C697 /* EKFieldCharacter.swift in Sources */,
-				45FE877122C6473300685317 /* Extensions.swift in Sources */,
+				45FE877122C6473300685317 /* EKExtensions.swift in Sources */,
 				452AF1E622C38D4300B8C697 /* ErrorsToThrow.swift in Sources */,
 				452A491B22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */,
 				452A492822C75931002AF9C3 /* Country.swift in Sources */,
@@ -665,6 +665,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.neuron.EKFieldMask;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
