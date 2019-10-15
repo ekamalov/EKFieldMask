@@ -90,7 +90,7 @@ internal class CountryService {
     
     // MARK: - Parsers
     private func allCountries(completion:  @escaping (Result<Countries,Error>) -> Void) {
-        if let path = Bundle.main.path(forResource: "CountryCodes", ofType: "json") {
+        if let path = Bundle(for: EKFieldMask.self).path(forResource: "CountryCodes", ofType: "json") {
             do {
                 let fileUrl = URL(fileURLWithPath: path)
                 let data = try Data(contentsOf: fileUrl)

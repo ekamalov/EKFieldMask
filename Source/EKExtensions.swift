@@ -44,9 +44,8 @@ internal extension UIView {
 }
 
 internal extension Bundle {
-    class var resource:Bundle {
+    static var resource:Bundle {
         let bundle = Bundle(for: EKFieldMask.self)
-        
         if let path = bundle.path(forResource: "EKFieldMask", ofType: "bundle") {
             return Bundle(path: path)!
         } else {

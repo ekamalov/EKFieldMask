@@ -58,9 +58,9 @@ class AuthorizationWrapperView: UIView {
     
     override func layoutSubviews() {
         self.title.layout { $0.left.top.margin(25).height(32).width(50%) }
-        self.forgotBT.layout { $0.bottom(of: self, aligned: .bottom, 25, relation: .equal).centerX().size(width: 42.2%, height: 7.1%) }
-        self.nextBT.layout { $0.bottom(of: forgotBT, aligned: .top, 15, relation: .equal).centerX().size(width: 84.6%, height: 22.3%) }
-        self.maskTextField.layout { $0.top(of: title, aligned: .bottom, 15, relation: .equal).centerX().size(width: 84.6%, height: 23.8%) }
+        self.forgotBT.layout { $0.bottom(of: self, 25, aligned: .bottom).centerX().size(width: 42.2%, height: 7.1%) }
+        self.nextBT.layout { $0.bottom(of: forgotBT, 15, aligned: .top).centerX().size(width: 84.6%, height: 22.3%) }
+        self.maskTextField.layout { $0.top(of: title, 15, aligned: .bottom).centerX().size(width: 84.6%, height: 23.8%) }
     }
 }
 
