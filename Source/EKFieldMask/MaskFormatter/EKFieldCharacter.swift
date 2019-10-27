@@ -44,6 +44,7 @@ public enum EKFieldPatternRex: Character {
 final class EKFieldCharacter {
     // MARK: - Attributes
     public var isEditable: Bool
+    /// The input value
     public var value: Character?
     /// The mask template string that represent current block.
     public var patternRex: EKFieldPatternRex
@@ -51,6 +52,11 @@ final class EKFieldCharacter {
     public var mask: Character
     
     // MARK: - Initializers
+    /// Default initialazer
+    /// - Parameter isEditable: Editable char flag
+    /// - Parameter value: Input char
+    /// - Parameter pattern: Rex pattern
+    /// - Parameter mask: Replacement symbol to a value
     public init(isEditable: Bool, value: Character? = nil, pattern: EKFieldPatternRex?, mask: Character) {
         self.isEditable = isEditable
         self.value = value

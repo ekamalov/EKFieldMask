@@ -27,10 +27,10 @@ import UIKit
 internal class SearchTextField: CustomTextField, UITextFieldDelegate {
     override func configure() {
         super.configure()
-        if let rightIcon = appearance.clearButtonIcon {
+        if let rightIcon = preferences.clearButtonIcon {
             setClearButtonImage(image: rightIcon)
         }
-        if let leftIcon = appearance.leftIcon {
+        if let leftIcon = preferences.leftIcon {
             setLeftImage(image: leftIcon)
         }
         self.delegate = self
@@ -45,52 +45,55 @@ internal class SearchTextField: CustomTextField, UITextFieldDelegate {
         self.resignFirstResponder()
         return true
     }
+    
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return .init(x: 15, y: (bounds.height - 16) / 2 , width: 16, height: 16)
     }
 }
 
 class CountryWrapperHeader: UIView {
-    
+    // MARK: - Attributes
     lazy var dropDownIcon:UIImageView  = .build {
-        $0.image = appearance.dropDownIcon
-        $0.frame.size = appearance.dropDownIconSize
+        $0.image = preferences.dropDownIcon
+        $0.frame.size = preferences.dropDownIconSize
     }
     
     lazy var momentViewTitle:UILabel = .build {
         $0.text = "Countries"
         $0.textAlignment = .center
-        $0.font = appearance.titleFont
-        $0.textColor = appearance.titleColor
+        $0.font = preferences.titleFont
+        $0.textColor = preferences.titleColor
         $0.sizeToFit()
     }
     
     lazy var seperatorLine:UIView = .build {
-        $0.backgroundColor = appearance.tableView.seperatorLineColor
+        $0.backgroundColor = preferences.seperatorLineColor
     }
     
-    lazy var searchTextField:SearchTextField = .build {
-        $0.placeholder = "Search countries"
-    }
+    internal var searchTextField:SearchTextField
     
-    private var appearance:EKCountryViewApperance
+    private var preferences: Preferences.CountryView.TableView.Header
     
-    init(appearance: EKCountryViewApperance) {
-        self.appearance = appearance
+     // MARK: - Initializers
+    init(preferences: Preferences.CountryView.TableView.Header) {
+        self.preferences = preferences
+        searchTextField  = SearchTextField(preferences: preferences.searchBar)
+
+        searchTextField.placeholder = "Search countries"
         super.init(frame: .zero)
-        searchTextField.setAppearance(appearance: appearance.searchBar)
         addSubviews(dropDownIcon,momentViewTitle,seperatorLine,searchTextField)
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: - Layouting
     override func layoutSubviews() {
         super.layoutSubviews()
-        dropDownIcon.frame.origin = CGPoint(x:(self.frame.width / 2) - appearance.dropDownIconSize.width / 2, y: self.bounds.height * 0.111)
-        momentViewTitle.frame = .init(x: 0, y: dropDownIcon.frame.maxY + 10, width: self.frame.width, height:appearance.titleFont.lineHeight)
+        dropDownIcon.frame.origin = CGPoint(x:(self.frame.width / 2) - preferences.dropDownIconSize.width / 2, y: self.bounds.height * 0.111)
+        momentViewTitle.frame = .init(x: 0, y: dropDownIcon.frame.maxY + 10, width: self.frame.width, height: preferences.titleFont.lineHeight)
         
-        seperatorLine.frame = .init(origin: .init(x: appearance.contentMargin, y: momentViewTitle.frame.maxY + 15),
-                                    size: .init(width: self.frame.width - (appearance.contentMargin * 2), height: 1))
+        seperatorLine.frame = .init(origin: .init(x: preferences.seperatorLinePadding, y: momentViewTitle.frame.maxY + 15),
+                                    size: .init(width: self.frame.width - (preferences.seperatorLinePadding * 2), height: 1))
         
         searchTextField.frame = .init(x: seperatorLine.frame.minX, y: seperatorLine.frame.maxY + 20, width: seperatorLine.bounds.width, height: self.bounds.height * 0.368)
     }

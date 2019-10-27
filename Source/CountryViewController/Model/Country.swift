@@ -27,6 +27,7 @@ import Foundation
 typealias Countries = [Country]
 
 struct Country: Codable, Equatable {
+    // MARK: - Attributes
     let pattern, mask, cc, nameEn: String
     let dialCode,nameRu: String
     
@@ -62,7 +63,7 @@ internal class CountryService {
             }
         }
     }
-    
+    // MARK: - Returns the device registered regiom code
     func countriesByRelated(related: [String])-> [(key: String, value: [Country])] {
         let tmpRelated:[Country] = related.compactMap { cc in
             if let object = countries.filter({ $0.cc == cc }).first {
@@ -76,13 +77,13 @@ internal class CountryService {
         }
         return tmpCountriesDictionary
     }
-    
+    // MARK: - Filter data by flag
     func search(_ by:String) -> [(key: String, value: [Country])] {
         if by.count == 0 { return countriesDictionary }
         let filteredData = countries.filter { $0.localizeName.lowercased().contains(by.lowercased())}
         return [(key: filteredData.count > 0 ? "Result" : "Not found", value: filteredData)]
     }
-    
+    // MARK: - Get the device registered region code.
     func localeCountry() -> Country? {
         let regionCode:String = Locale.current.regionCode ?? "US"
         return countries.filter { $0.cc == regionCode }.first

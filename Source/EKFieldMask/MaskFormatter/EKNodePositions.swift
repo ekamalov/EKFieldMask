@@ -26,9 +26,15 @@ import Foundation
 
 public struct EKNodePositions {
     // MARK: - Attributes
+    /// The cursor position index
     var current:Int
+    /// The next cursor position index
     var next:Int?
     // MARK: - Initializers
+    
+    /// Default initializer
+    /// - Parameter current: Current cursor position index
+    /// - Parameter next: Next editable symbol index.  maybe nil if the next symbol not found
     init(current:Int, next:Int? = nil) {
         self.current = current
         self.next = next
