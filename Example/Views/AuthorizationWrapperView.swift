@@ -29,17 +29,19 @@ class AuthorizationWrapperView: UIView {
         $0.addTarget(self, action: #selector(nextBTAction), for: .touchUpInside)
     }
     
-    lazy var maskTextField:EKFieldMask = .build {
-        $0.font = Fonts.GilroySemiBold.withSize(18)
-        $0.placeholder = "E-mail or phone number"
-    }
-        
+    
+    lazy var maskTextField:EKFieldMask = {
+        let field = EKFieldMask(placeholder: "E-mail or phone number")
+        return field
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.addSubviews(title,forgotBT,nextBT,maskTextField)
         maskTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

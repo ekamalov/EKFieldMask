@@ -41,6 +41,23 @@ internal extension UIView {
     func addSubviews(_ views:UIView...){
         views.forEach { addSubview($0) }
     }
+    
+    func tipView(text: String, animated: Bool = true, preferences: TipView.Preferences) {
+        let tipView = TipView(text: text, preferences: preferences)
+        tipView.show(view: self, animated: animated)
+    }
+    var globalFrame :CGRect? {
+        return self.superview?.convert(self.frame, to: nil)
+    }
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
 }
 
 internal extension Bundle {
@@ -77,7 +94,22 @@ internal extension UIApplication {
     }
 }
 
-
+internal extension CALayer {
+    func applySketchShadow( color: UIColor = .black, alpha: Float = 0.5, offset:CGSize = .zero, blur: CGFloat = 4, spread: CGFloat = 0)
+    {
+        shadowColor = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset = offset
+        shadowRadius = blur / 2.0
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
+    }
+}
 
 internal enum Haptic {
     case impact(style: UIImpactFeedbackGenerator.FeedbackStyle)

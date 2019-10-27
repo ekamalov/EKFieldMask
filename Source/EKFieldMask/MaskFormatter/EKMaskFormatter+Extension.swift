@@ -34,6 +34,7 @@ extension Character {
 }
 
 internal extension Array where Element:EKFieldCharacter {
+   
     func nextEditableElement(index:Int, checker: @escaping ((Element) -> Bool)) -> (index:Int,value:Element)? {
         var index = index
         while index < self.count {

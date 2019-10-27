@@ -58,11 +58,13 @@ public struct EKMaskFormatter {
 }
 // MARK: - Extensions
 public extension EKMaskFormatter {
+    
     mutating func clearMask() {
         self.charactersNode.filter { $0.isEditable }.forEach { _ in
             _ = try? deleteLast()
         }
     }
+    
     mutating func deleteLast() throws -> EKNodePositions {
         return try self.delete(at: actuallyNode?.index ?? self.charactersNode.count - 1)
     }
@@ -109,10 +111,12 @@ public extension EKMaskFormatter {
     }
 }
 
+// MARK: - Status enum
 public enum EKMaskFormatterStatus {
     case clear, incomplete, complete
 }
 
+// MARK: - Extensions
 public extension EKMaskFormatter {
     var text:String { return charactersNode.asText }
     var firstEditableNodeIndex:Int? {

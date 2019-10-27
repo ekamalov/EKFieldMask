@@ -24,46 +24,49 @@
 
 import UIKit
 
-open class CustomTextField: UITextField{
+open class CustomTextField: UITextField {
     // MARK: - Properties
-    internal var appearance:EKTextFieldAppearance! {
-        didSet {
-            layer.cornerRadius = appearance.cornerRadius
-            layer.masksToBounds = appearance.cornerRadius > 0
-            layer.borderWidth = appearance.borderWidth
-            layer.borderColor = appearance.borderColor.cgColor
-            font = appearance.font
-            textColor = appearance.textColor
-            tintColor = appearance.tintColor
-        }
-    }
+    fileprivate(set) open var preferences: Preferences.EKTextField
     
-    // MARK: - Life cycle
-    public override init(frame: CGRect) {
+    // MARK: - Initializers
+    internal override init(frame: CGRect) {
+        self.preferences = Preferences.EKTextField()
         super.init(frame: frame)
+        configure()
+    }
+    
+    internal init(preferences: Preferences.EKTextField) {
+        self.preferences = preferences
+        super.init(frame: .zero)
         self.configure()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.configure()
-    }
+    
+    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
     // MARK: - Set up
-    public func setAppearance(appearance: EKTextFieldAppearance) {
-        self.appearance = appearance
-    }
     internal func configure(){
+        layer.cornerRadius  = preferences.cornerRadius
+        layer.masksToBounds = preferences.cornerRadius > 0
+        layer.borderWidth   = preferences.borderWidth
+        layer.borderColor   = preferences.borderColor.cgColor
+        font                = preferences.font
+        textColor           = preferences.textColor
+        tintColor           = preferences.tintColor
+        
         autocorrectionType = .no
         addTarget(self, action: #selector(textChanged), for: .editingChanged)
-        self.setAppearance(appearance: .init())
     }
+    
     public func setLeftImage(image:UIImage) {
         leftViewMode = .always
         leftView = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size),selector: #selector(leftButtonTap))
     }
+    
     public func setClearButtonImage(image:UIImage) {
         rightView = sideImageViewConfigurator(image: image, frame: .init(origin: .zero, size: leftViewRect(forBounds: self.bounds).size), selector: #selector(clearButtonTap))
     }
+    
     internal func sideImageViewConfigurator(image:UIImage,frame:CGRect, selector: Selector) -> UIImageView {
         let img = UIImageView(image: image)
         img.frame = frame
@@ -77,15 +80,19 @@ open class CustomTextField: UITextField{
     @objc open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return .init(x: 15, y: (bounds.height - 27) / 2 , width: 27, height: 27)
     }
+    
     open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         return .init(x: bounds.maxX - 35, y: (bounds.height - 20) / 2 , width: 20, height: 20)
     }
+    
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: (leftView?.frame.maxX ?? 12) + 8 , dy: 5)
     }
+    
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: (leftView?.frame.maxX ?? 12) + 8 , dy: 5)
     }
+    
     // MARK: - Actions
     @objc func textChanged(){
         rightViewMode = (text?.count ?? 0) > 0 ? .always : .never

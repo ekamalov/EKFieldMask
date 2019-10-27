@@ -26,7 +26,8 @@ import UIKit
 
 open class EKFieldMask: CustomTextField {
     // MARK: - Properties
-    var countryViewAppearance:EKCountryViewApperance?
+    private(set) open var globalPreferences: Preferences
+    private(set) var tipViewTitle: String
     var formatter:EKMaskFormatter!
     var country:Country? {
         willSet {
@@ -34,6 +35,7 @@ open class EKFieldMask: CustomTextField {
             setPhoneNumberMask(pattern: value.pattern, mask: value.mask)
         }
     }
+    
     var type:EKFieldMaskType = .none {
         willSet {
             switch newValue {
@@ -50,12 +52,18 @@ open class EKFieldMask: CustomTextField {
         }
     }
     
+    
+    // MARK: - Static variables
+    public static var staticGlobalPreferences = Preferences()
+    
+    // MARK: - Enums
     enum FieldEvent {
         case delete,insert
     }
     enum EKFieldMaskType {
         case email,phoneNumber, none
     }
+    
     // MARK: - Set up
     public override func setLeftImage(image: UIImage) {
         leftViewMode = .always
@@ -66,24 +74,46 @@ open class EKFieldMask: CustomTextField {
         img.layer.cornerRadius = img.frame.size.width / 2
         img.clipsToBounds = true
         
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.4).cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .init(width: 0, height: 1)
-        view.layer.shadowRadius = 8
+        view.layer.applySketchShadow(color: .black, alpha: 0.4, offset: .init(width: 0, height: 1), blur: 8)
         view.addSubview(img)
         leftView = view
     }
-    public func setCountryViewAppearance(appearance: EKCountryViewApperance){
-        self.countryViewAppearance = appearance
+    
+    // MARK: - Initializers
+    internal override init(frame: CGRect) {
+        self.globalPreferences = EKFieldMask.staticGlobalPreferences
+        self.tipViewTitle = "Tap again to clear"
+        super.init(preferences: globalPreferences.textField)
     }
+    
+    public convenience init() {
+        self.init(frame: .zero)
+    }
+    
+    /// Public initializer
+    /// - Parameter title: TipView title
+    /// - Parameter placeholder: text field placeholder
+    /// - Parameter preferences: global perference
+    public init(tipView title:String =  "Tap again to clear", placeholder: String, preferences: Preferences = EKFieldMask.staticGlobalPreferences) {
+        self.globalPreferences = preferences
+        self.tipViewTitle = title
+        super.init(preferences: globalPreferences.textField)
+        self.placeholder = placeholder
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     internal override func configure(){
         super.configure()
         delegate = self
-        if let clearBTImage = appearance.clearButtonIcon{
+        if let clearBTImage = preferences.clearButtonIcon{
             self.setClearButtonImage(image: clearBTImage)
         }
         self.country = CountryService.shared.localeCountry()
     }
+    
     private func setPhoneNumberMask(pattern:String, mask:String) {
         do {
             self.formatter = try EKMaskFormatter(pattern: pattern, mask: mask)
@@ -99,15 +129,18 @@ open class EKFieldMask: CustomTextField {
             self.type = .none
             self.text = nil
         }else {
+            rightView?.tipView(text: tipViewTitle, preferences: globalPreferences.tipView)
             formatter.clearMask()
             self.text = formatter.text
             textFieldDidBeginEditing(self)
         }
         sendActions(for: .editingChanged)
     }
+    
     override func leftButtonTap() {
         Haptic.impact(style: .light).impact()
-        let vc = CountryViewController(appearance: countryViewAppearance) { (country) in
+        
+        let vc = CountryViewController(preferences: globalPreferences.countryView) { (country) in
             self.country = country
             if let img = UIImage(named: country.cc, in: .resource, compatibleWith: nil) {
                 self.setLeftImage(image: img)
@@ -125,6 +158,7 @@ open class EKFieldMask: CustomTextField {
 
 // MARK: - Extensions & Delegate
 extension EKFieldMask: UITextFieldDelegate {
+    
     private func detectTextFieldAction(range: NSRange, string: String) -> FieldEvent {
         let char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
