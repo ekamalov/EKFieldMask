@@ -42,6 +42,7 @@ final public class CountryTableViewCell: UITableViewCell {
     }
     
     internal func update(_ country:Country, preferences: Preferences.CountryView.TableView.Cell){
+        self.preferences = preferences
         self.icon.image = UIImage(named: country.cc, in: Bundle.resource, compatibleWith: nil)
         countryName.text = country.localizeName
         dialCode.text = "+\(country.dialCode)"
