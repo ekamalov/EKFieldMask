@@ -5,7 +5,7 @@ env:
     global:
         - PROJECT=EKFieldMask.xcodeproj
         - SCHEME=EKFieldMask
-        - FRAMEWORK_NAME=EasyTipView
+        - FRAMEWORK_NAME=EKFieldMask
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
@@ -17,5 +17,5 @@ before_deploy:
 
 script:
     - set -o pipefail
-    - xcodebuild clean build -scheme $SCHEME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=13.1' -configuration Debug | xcpretty
+    - xcodebuild clean build -scheme $SCHEME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' -configuration Debug | xcpretty
     - pod lib lint --quick
