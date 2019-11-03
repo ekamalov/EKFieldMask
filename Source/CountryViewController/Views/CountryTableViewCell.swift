@@ -31,19 +31,19 @@ final public class CountryTableViewCell: UITableViewCell {
     lazy var dialCode:UILabel = .init(frame: .zero)
     lazy var seperatorLine:UIView = .init(frame: .zero)
     
-    internal var preferences: Preferences.CountryView.TableView.Cell = Preferences.CountryView.TableView.Cell() {
+    internal var preferences: EKFieldPreferences.CountryView.TableView.Cell = EKFieldPreferences.CountryView.TableView.Cell() {
         willSet {
-            countryName.font = newValue.titleFont
-            countryName.textColor = newValue.titleColor
-            dialCode.font = newValue.detailTextFont
-            dialCode.textColor = newValue.detailTextColor
+            countryName.font = newValue.countryTextFont
+            countryName.textColor = newValue.countryTextColor
+            dialCode.font = newValue.dialCodeTextFont
+            dialCode.textColor = newValue.dialCodeTextColor
             seperatorLine.backgroundColor = newValue.seperatorLineColor
         }
     }
     
-    internal func update(_ country:Country, preferences: Preferences.CountryView.TableView.Cell){
+    internal func update(_ country:Country, preferences: EKFieldPreferences.CountryView.TableView.Cell){
         self.preferences = preferences
-        self.icon.image = UIImage(named: country.cc, in: Bundle.resource, compatibleWith: nil)
+        self.icon.image = UIImage(named: country.cc)
         countryName.text = country.localizeName
         dialCode.text = "+\(country.dialCode)"
         countryName.sizeToFit()
@@ -64,9 +64,9 @@ final public class CountryTableViewCell: UITableViewCell {
     override public func layoutSubviews() {
         super.layoutSubviews()
         let yCenter = self.frame.height / 2
-        icon.frame = .init(origin: .init(x: 0, y: yCenter - (preferences.iconSize.height / 2)), size: preferences.iconSize)
-        countryName.frame.origin = .init(x: icon.frame.maxX + 8, y: yCenter - (preferences.titleFont.lineHeight / 2))
-        dialCode.frame.origin = .init(x: self.frame.width - dialCode.frame.width, y: yCenter - (preferences.titleFont.lineHeight / 2))
+        icon.frame = .init(origin: .init(x: 0, y: yCenter - (preferences.flagIconSize.height / 2)), size: preferences.flagIconSize)
+        countryName.frame.origin = .init(x: icon.frame.maxX + 8, y: yCenter - (preferences.countryTextFont.lineHeight / 2))
+        dialCode.frame.origin = .init(x: self.frame.width - dialCode.frame.width, y: yCenter - (preferences.countryTextFont.lineHeight / 2))
         seperatorLine.frame = .init(origin: .init(x: 0, y: frame.height - 1), size: .init(width: frame.width, height: 1))
     }
     

@@ -24,7 +24,7 @@
 
 import Foundation
 
-public struct EKMaskFormatter {
+internal struct EKMaskFormatter {
     // MARK: - Properties
     var pattern: String
     var mask: String
@@ -57,7 +57,7 @@ public struct EKMaskFormatter {
     }
 }
 // MARK: - Extensions
-public extension EKMaskFormatter {
+extension EKMaskFormatter {
     
     mutating func clearMask() {
         self.charactersNode.filter { $0.isEditable }.forEach { _ in
@@ -112,12 +112,12 @@ public extension EKMaskFormatter {
 }
 
 // MARK: - Status enum
-public enum EKMaskFormatterStatus {
+internal enum EKMaskFormatterStatus {
     case clear, incomplete, complete
 }
 
 // MARK: - Extensions
-public extension EKMaskFormatter {
+extension EKMaskFormatter {
     var text:String { return charactersNode.asText }
     var firstEditableNodeIndex:Int? {
         return self.charactersNode.nextEditableElement(index: 0, checker: { $0.isEditable } )?.index

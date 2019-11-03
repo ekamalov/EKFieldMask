@@ -24,19 +24,16 @@
 
 import Foundation
 
-public struct EKNodePositions {
-    // MARK: - Attributes
-    /// The cursor position index
-    var current:Int
-    /// The next cursor position index
-    var next:Int?
-    // MARK: - Initializers
+internal enum EKFormatterThrows:Error {
+    case maskDoNotMatchTemplate
+    case canNotFindEditableNode(description:String)
+    case invalidCharacter(character:Character)
     
-    /// Default initializer
-    /// - Parameter current: Current cursor position index
-    /// - Parameter next: Next editable symbol index.  maybe nil if the next symbol not found
-    init(current:Int, next:Int? = nil) {
-        self.current = current
-        self.next = next
+    var localizedDescription: String {
+        switch self {
+        case .canNotFindEditableNode(description: let description): return "Can't find an editable node. \(description)"
+        case .maskDoNotMatchTemplate: return "Mask and pattern are not equal. PS: you can use a character length of one or equal to the pattern \n Example: pattern: ({dddd})-({dddd}) mask: D -> equal (DDDD)-(DDDD) or\n pattern: ({dddd})-({dddd}) mask: (AAAA)-(AAAA) -> equal (AAAA)-(AAAA)"
+        case .invalidCharacter(character: let character): return "Invalied character \(character), check current character to pattern"
+        }
     }
 }

@@ -46,7 +46,7 @@ final public class CountryViewController: UIViewController {
     }
     
     // MARK:  Appearance
-    private var preferences: Preferences.CountryView
+    private var preferences: EKFieldPreferences.CountryView
     private var wrapperViewHeader: CountryWrapperHeader
     
     // MARK: - Animation
@@ -60,7 +60,7 @@ final public class CountryViewController: UIViewController {
     private var selected:(_ item: Country) -> Void?
     
     // MARK: - Initializers
-    init(preferences: Preferences.CountryView, selected: @escaping (_ item: Country) -> Void) {
+    init(preferences: EKFieldPreferences.CountryView, selected: @escaping (_ item: Country) -> Void) {
         self.preferences = preferences
         self.selected = selected
         self.wrapperViewHeader = .init(preferences: self.preferences.tableView.header)
@@ -125,7 +125,7 @@ final public class CountryViewController: UIViewController {
             startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
-            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine", in: Bundle.resource, compatibleWith: nil)
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine")
         case .changed:
             var fraction = recognizer.translation(in: momentumView).y / closedTransform.ty
             if animator.isReversed { fraction *= -1 }
@@ -138,13 +138,12 @@ final public class CountryViewController: UIViewController {
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
-            self.wrapperViewHeader.dropDownIcon.image = self.preferences.tableView.header.dropDownIcon
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrow")
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }
     }
     
-    // FIXME: fix this method
     private func startAnimationIfNeeded(show:Bool, duration:Double = 0.7, _ completion: (() -> Void)? = nil) {
         if animator.isRunning { return }
         animator = .init(duration: duration, dampingRatio: 0.85)
@@ -213,8 +212,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let view = UIView()
         let title:UILabel = .build {
             $0.text = self.countries[section].key
-            $0.font = preferences.tableView.header.font
-            $0.textColor = preferences.tableView.header.textColor
+            $0.font = preferences.tableView.sectionTitleFont
+            $0.textColor = preferences.tableView.sectionTitleColor
             $0.frame.origin = .init(x: 0, y: 30 - (preferences.tableView.header.searchBar.font.lineHeight / 2))
             $0.sizeToFit()
         }

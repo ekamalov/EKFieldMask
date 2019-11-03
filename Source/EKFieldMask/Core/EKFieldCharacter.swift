@@ -24,7 +24,7 @@
 
 import UIKit
 
-public enum EKFieldPatternRex: Character {
+internal enum EKFieldPatternRex: Character {
     case numberDecimal = "d"
     case nonDecimal    = "D"
     case nonWord       = "W"
