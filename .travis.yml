@@ -1,22 +1,21 @@
-language: objective-c
-osx_image: xcode10.2
-
-cache: bundler
+language: swift
+osx_image: xcode11.1
 
 env:
     global:
         - PROJECT=EKFieldMask.xcodeproj
         - SCHEME=EKFieldMask
-
+        - FRAMEWORK_NAME=EasyTipView
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
-
 install:
-    - gem install xcpretty
-
+    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
 
 script:
     - set -o pipefail
-    - travis_retry xcodebuild clean build test -project "$PROJECT" -scheme "$SCHEME" -destination "OS=12.2,name=iPhone X" -configuration Debug | xcpretty
-    - bash <(curl -s https://codecov.io/bash) -J 'EKFieldMask'
+    - xcodebuild -scheme $SCHEME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=13.1' build test
+    - pod lib lint --quick

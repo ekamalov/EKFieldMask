@@ -18,8 +18,8 @@ In some cases, during the process registration, cannot design through social net
 ## Requirements
 
 - iOS 12.2+
-- Xcode 11 +
-- Swift 5.0 +
+- Xcode 11+
+- Swift 5.0+
 
 ## Example
 First clone the repo, and run `carthage update` from the root directory.
