@@ -1,9 +1,9 @@
 # Cellular number mask
 
-<img align="left" src="https://github.com/ekamalov/MediaFiles/blob/master/EKMaskField.gif" width="480" height="360"/>
+<img align="left" src="https://github.com/ekamalov/MediaFiles/blob/master/EKMaskField.gif" width="480" height="369"/>
 
 ### About
-In some cases, during the process registration, cannot design through social networks like e-wallets, bank accounts, etc. In such cases, usually, in applications, for ease of use, developed a particular form for a phone number with a pre-selected country code and convenient number entry. But exist the case when users also should be able to sign up by e-mail. For such an example, we have designed the unique **cellular number mask** that appears when the user starts typing numbers.
+In some cases, during the process registration, cannot design through social networks like e-wallets, bank accounts, etc. In such cases, usually, in applications, for ease of use, developed a particular form for a phone number with a pre-selected country code and convenient number entry. But exist the case when users also should be able to sign up by e-mail. For such an example, we have designed the unique **cellular number mask** that appears when the user starts typing numbers. Design on [Dribble](https://dribbble.com/shots/7970274-Cellular-number-mask-Concept?utm_source=Clipboard_Shot&utm_campaign=ehrlan&utm_content=Cellular%20number%20mask%20(Concept)&utm_medium=Social_Share)
 ###### If you 👍 the project, do not forget ⭐️ me <br> Stay tuned for the latest updates [Follow me](https://github.com/ekamalov) 🤙
 
 
@@ -18,8 +18,8 @@ In some cases, during the process registration, cannot design through social net
 ## Requirements
 
 - iOS 12.2+
-- Xcode 11+
-- Swift 5.0+
+- Xcode 11 +
+- Swift 5.0 +
 
 ## Example
 First clone the repo, and run `carthage update` from the root directory.
@@ -71,7 +71,7 @@ public init(tipView title: String = "Tap again to clear",
 let maskField: EKFieldMask = EKFieldMask(placeholder: "E-mail or phone number")
 //or     
 let maskField: EKFieldMask = EKFieldMask(tipView: "Tap again to clear",
- 					 placeholder: "E-mail or phone number")
+ 											placeholder: "E-mail or phone number")
 
 ```
 If you want to change the appearance look `Customizing` heading
