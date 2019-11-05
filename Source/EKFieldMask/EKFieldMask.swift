@@ -26,7 +26,7 @@ import UIKit
 
 open class EKFieldMask: CustomTextField {
     // MARK: - Properties
-    private(set) open var globalPreferences: Preferences
+    private(set) open var globalPreferences: EKFieldPreferences
     private(set) var tipViewTitle: String
     var formatter:EKMaskFormatter!
     var country:Country? {
@@ -44,7 +44,7 @@ open class EKFieldMask: CustomTextField {
                 self.keyboardType = .emailAddress
             case .phoneNumber:
                 self.keyboardType = .phonePad
-                if let flagName = country?.cc, let flagImage = UIImage(named: flagName, in: .resource, compatibleWith: nil) {
+                if let flagName = country?.cc, let flagImage = UIImage(named: flagName){
                     self.setLeftImage(image: flagImage)
                 }
             }
@@ -54,7 +54,7 @@ open class EKFieldMask: CustomTextField {
     
     
     // MARK: - Static variables
-    public static var staticGlobalPreferences = Preferences()
+    public static var staticGlobalPreferences = EKFieldPreferences()
     
     // MARK: - Enums
     enum FieldEvent {
@@ -94,7 +94,7 @@ open class EKFieldMask: CustomTextField {
     /// - Parameter title: TipView title
     /// - Parameter placeholder: text field placeholder
     /// - Parameter preferences: global perference
-    public init(tipView title:String =  "Tap again to clear", placeholder: String, preferences: Preferences = EKFieldMask.staticGlobalPreferences) {
+    public init(tipView title:String =  "Tap again to clear", placeholder: String, preferences: EKFieldPreferences = EKFieldMask.staticGlobalPreferences) {
         self.globalPreferences = preferences
         self.tipViewTitle = title
         super.init(preferences: globalPreferences.textField)
@@ -129,7 +129,11 @@ open class EKFieldMask: CustomTextField {
             self.type = .none
             self.text = nil
         }else {
-            rightView?.tipView(text: tipViewTitle, preferences: globalPreferences.tipView)
+            if let rightView = rightView {
+                let tipView = TipView(text: tipViewTitle, preferences: globalPreferences.tipView)
+                tipView.show(view: rightView, animated: true)
+            }
+            
             formatter.clearMask()
             self.text = formatter.text
             textFieldDidBeginEditing(self)
@@ -142,7 +146,7 @@ open class EKFieldMask: CustomTextField {
         
         let vc = CountryViewController(preferences: globalPreferences.countryView) { (country) in
             self.country = country
-            if let img = UIImage(named: country.cc, in: .resource, compatibleWith: nil) {
+            if let img = UIImage(named: country.cc) {
                 self.setLeftImage(image: img)
             }
             self.text = self.formatter.text

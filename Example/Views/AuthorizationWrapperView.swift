@@ -30,18 +30,26 @@ class AuthorizationWrapperView: UIView {
     }
     
     
-    lazy var maskTextField:EKFieldMask = {
-        let field = EKFieldMask(placeholder: "E-mail or phone number")
-        return field
-    }()
+     var maskTextField:EKFieldMask
     
     override init(frame: CGRect) {
+        //        var preferences = EKFieldPreferences()
+        //        preferences.tipView.body.backgroundColor = .red
+        //        preferences.textField.textColor = .blue
+        //        preferences.countryView.tableView.cell.countryTextColor = .black
+        //
+        //        maskTextField = EKFieldMask(tipView: "Tap again to clear",
+        //                                placeholder: "E-mail or phone number",
+        //                                preferences: preferences)
+                
+        maskTextField = EKFieldMask(placeholder: "E-mail or phone number")
+        
         super.init(frame: frame)
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.addSubviews(title,forgotBT,nextBT,maskTextField)
         maskTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
-        
+            
     }
     
     required init?(coder aDecoder: NSCoder) {

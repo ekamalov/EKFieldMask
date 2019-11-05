@@ -26,16 +26,16 @@ import UIKit
 
 open class CustomTextField: UITextField {
     // MARK: - Properties
-    fileprivate(set) open var preferences: Preferences.EKTextField
+    fileprivate(set) open var preferences: EKFieldPreferences.EKTextField
     
     // MARK: - Initializers
     internal override init(frame: CGRect) {
-        self.preferences = Preferences.EKTextField()
+        self.preferences = EKFieldPreferences.EKTextField()
         super.init(frame: frame)
         configure()
     }
     
-    internal init(preferences: Preferences.EKTextField) {
+    internal init(preferences: EKFieldPreferences.EKTextField) {
         self.preferences = preferences
         super.init(frame: .zero)
         self.configure()

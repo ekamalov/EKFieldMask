@@ -42,13 +42,10 @@ internal extension UIView {
         views.forEach { addSubview($0) }
     }
     
-    func tipView(text: String, animated: Bool = true, preferences: TipView.Preferences) {
-        let tipView = TipView(text: text, preferences: preferences)
-        tipView.show(view: self, animated: animated)
-    }
     var globalFrame :CGRect? {
         return self.superview?.convert(self.frame, to: nil)
     }
+    
     func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder
@@ -56,17 +53,6 @@ internal extension UIView {
             return nextResponder.findViewController()
         } else {
             return nil
-        }
-    }
-}
-
-internal extension Bundle {
-    static var resource:Bundle {
-        let bundle = Bundle(for: EKFieldMask.self)
-        if let path = bundle.path(forResource: "EKFieldMask", ofType: "bundle") {
-            return Bundle(path: path)!
-        } else {
-            return bundle
         }
     }
 }

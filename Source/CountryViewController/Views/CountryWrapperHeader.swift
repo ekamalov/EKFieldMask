@@ -53,9 +53,10 @@ internal class SearchTextField: CustomTextField, UITextFieldDelegate {
 
 class CountryWrapperHeader: UIView {
     // MARK: - Attributes
+    private let dropDownIconSize:CGSize = .init(width: 34, height: 10)
     lazy var dropDownIcon:UIImageView  = .build {
-        $0.image = preferences.dropDownIcon
-        $0.frame.size = preferences.dropDownIconSize
+        $0.image = UIImage(named: "arrow")
+        $0.frame.size = dropDownIconSize
     }
     
     lazy var momentViewTitle:UILabel = .build {
@@ -72,10 +73,10 @@ class CountryWrapperHeader: UIView {
     
     internal var searchTextField:SearchTextField
     
-    private var preferences: Preferences.CountryView.TableView.Header
+    private var preferences: EKFieldPreferences.CountryView.TableView.Header
     
      // MARK: - Initializers
-    init(preferences: Preferences.CountryView.TableView.Header) {
+    init(preferences: EKFieldPreferences.CountryView.TableView.Header) {
         self.preferences = preferences
         searchTextField  = SearchTextField(preferences: preferences.searchBar)
 
@@ -89,7 +90,7 @@ class CountryWrapperHeader: UIView {
     // MARK: - Layouting
     override func layoutSubviews() {
         super.layoutSubviews()
-        dropDownIcon.frame.origin = CGPoint(x:(self.frame.width / 2) - preferences.dropDownIconSize.width / 2, y: self.bounds.height * 0.111)
+        dropDownIcon.frame.origin = CGPoint(x:(self.frame.width / 2) - dropDownIconSize.width / 2, y: self.bounds.height * 0.111)
         momentViewTitle.frame = .init(x: 0, y: dropDownIcon.frame.maxY + 10, width: self.frame.width, height: preferences.titleFont.lineHeight)
         
         seperatorLine.frame = .init(origin: .init(x: preferences.seperatorLinePadding, y: momentViewTitle.frame.maxY + 15),
