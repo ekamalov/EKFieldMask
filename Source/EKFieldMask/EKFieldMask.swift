@@ -44,7 +44,7 @@ open class EKFieldMask: CustomTextField {
                 self.keyboardType = .emailAddress
             case .phoneNumber:
                 self.keyboardType = .phonePad
-                if let flagName = country?.cc, let flagImage = UIImage(named: flagName){
+                if let flagName = country?.cc, let flagImage = UIImage(named: flagName, in: .framework, compatibleWith: nil){
                     self.setLeftImage(image: flagImage)
                 }
             }
@@ -146,7 +146,7 @@ open class EKFieldMask: CustomTextField {
         
         let vc = CountryViewController(preferences: globalPreferences.countryView) { (country) in
             self.country = country
-            if let img = UIImage(named: country.cc) {
+            if let img = UIImage(named: country.cc, in: .framework, compatibleWith: nil) {
                 self.setLeftImage(image: img)
             }
             self.text = self.formatter.text

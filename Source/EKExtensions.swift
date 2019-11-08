@@ -117,3 +117,10 @@ internal enum Haptic {
         }
     }
 }
+
+internal extension Bundle {
+    class var framework:Bundle {
+        return Bundle(for: EKFieldMask.self)
+    }
+}
+

@@ -55,7 +55,7 @@ class CountryWrapperHeader: UIView {
     // MARK: - Attributes
     private let dropDownIconSize:CGSize = .init(width: 34, height: 10)
     lazy var dropDownIcon:UIImageView  = .build {
-        $0.image = UIImage(named: "arrow")
+        $0.image = UIImage(named: "arrow", in: .framework, compatibleWith: nil)
         $0.frame.size = dropDownIconSize
     }
     
