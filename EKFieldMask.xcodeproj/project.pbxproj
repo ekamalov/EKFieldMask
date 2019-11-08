@@ -10,15 +10,13 @@
 		4511EA0722CC92F600D5B2A6 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4511EA0522CC92F600D5B2A6 /* Gilroy-SemiBold.ttf */; platformFilter = ios; };
 		4511EA0822CC92F600D5B2A6 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4511EA0622CC92F600D5B2A6 /* Gilroy-Bold.ttf */; platformFilter = ios; };
 		4511EA0F22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4511EA0E22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift */; };
+		4521DB8023753DF30072C43B /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4521DB7E23753DF20072C43B /* CountryFlags.xcassets */; };
+		4521DB8123753DF30072C43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4521DB7F23753DF30072C43B /* Assets.xcassets */; };
 		452A48E922C652DC002AF9C3 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48E822C652DC002AF9C3 /* CountryViewController.swift */; };
-		452A48F122C66196002AF9C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A48F022C66196002AF9C3 /* Assets.xcassets */; platformFilter = ios; };
 		452A48FE22C73AC0002AF9C3 /* EKFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */; };
-		452A491922C75108002AF9C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A48F022C66196002AF9C3 /* Assets.xcassets */; };
 		452A491B22C75403002AF9C3 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A491A22C75403002AF9C3 /* CountryTableViewCell.swift */; };
 		452A492122C7557C002AF9C3 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 452A492022C7557C002AF9C3 /* CountryCodes.json */; platformFilter = ios; };
 		452A492222C7557C002AF9C3 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 452A492022C7557C002AF9C3 /* CountryCodes.json */; };
-		452A492422C755A2002AF9C3 /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A492322C755A2002AF9C3 /* CountryFlags.xcassets */; platformFilter = ios; };
-		452A492522C755A2002AF9C3 /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452A492322C755A2002AF9C3 /* CountryFlags.xcassets */; };
 		452A492822C75931002AF9C3 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A492722C75931002AF9C3 /* Country.swift */; };
 		452AF1B622C38ADE00B8C697 /* EKFieldMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 452AF1B422C38ADE00B8C697 /* EKFieldMask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		452AF1C422C38B5000B8C697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452AF1C322C38B5000B8C697 /* AppDelegate.swift */; };
@@ -59,13 +57,13 @@
 		4511EA0522CC92F600D5B2A6 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		4511EA0622CC92F600D5B2A6 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 		4511EA0E22D334C500D5B2A6 /* EKMaskFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKMaskFormatter+Extension.swift"; sourceTree = "<group>"; };
+		4521DB7E23753DF20072C43B /* CountryFlags.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CountryFlags.xcassets; sourceTree = "<group>"; };
+		4521DB7F23753DF30072C43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		452A48E822C652DC002AF9C3 /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
-		452A48F022C66196002AF9C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		452A48F622C6643A002AF9C3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		452A48FC22C73A64002AF9C3 /* EKFieldMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKFieldMask.swift; sourceTree = "<group>"; };
 		452A491A22C75403002AF9C3 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		452A492022C7557C002AF9C3 /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
-		452A492322C755A2002AF9C3 /* CountryFlags.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CountryFlags.xcassets; sourceTree = "<group>"; };
 		452A492722C75931002AF9C3 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		452AF1B122C38ADE00B8C697 /* EKFieldMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EKFieldMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		452AF1B422C38ADE00B8C697 /* EKFieldMask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKFieldMask.h; sourceTree = "<group>"; };
@@ -136,8 +134,8 @@
 			children = (
 				4511EA0422CC925D00D5B2A6 /* Fonts */,
 				452A492022C7557C002AF9C3 /* CountryCodes.json */,
-				452A48F022C66196002AF9C3 /* Assets.xcassets */,
-				452A492322C755A2002AF9C3 /* CountryFlags.xcassets */,
+				4521DB7F23753DF30072C43B /* Assets.xcassets */,
+				4521DB7E23753DF20072C43B /* CountryFlags.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -381,10 +379,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452A492422C755A2002AF9C3 /* CountryFlags.xcassets in Resources */,
+				4521DB8023753DF30072C43B /* CountryFlags.xcassets in Resources */,
 				4511EA0722CC92F600D5B2A6 /* Gilroy-SemiBold.ttf in Resources */,
 				4511EA0822CC92F600D5B2A6 /* Gilroy-Bold.ttf in Resources */,
-				452A48F122C66196002AF9C3 /* Assets.xcassets in Resources */,
+				4521DB8123753DF30072C43B /* Assets.xcassets in Resources */,
 				452A492122C7557C002AF9C3 /* CountryCodes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,11 +393,9 @@
 			files = (
 				452AF1CE22C38B5000B8C697 /* LaunchScreen.storyboard in Resources */,
 				452AF1CB22C38B5000B8C697 /* Assets.xcassets in Resources */,
-				452A492522C755A2002AF9C3 /* CountryFlags.xcassets in Resources */,
 				45DCF607235580A2005EB4C4 /* Cartfile.private in Resources */,
 				452A492222C7557C002AF9C3 /* CountryCodes.json in Resources */,
 				45FE875722C49BB800685317 /* Gilroy-SemiBold.ttf in Resources */,
-				452A491922C75108002AF9C3 /* Assets.xcassets in Resources */,
 				45FE875622C49BB800685317 /* Gilroy-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

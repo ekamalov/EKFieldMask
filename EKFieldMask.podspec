@@ -18,5 +18,5 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "12.2"
   spec.author       = { "Erik Kamalov" => "ekamalov967@gmail.com" }
   spec.source       = { :git => "https://github.com/ekamalov/EKFieldMask.git", :tag => spec.version }
-  spec.source_files = 'Source/*.swift'
+  spec.source_files = 'Source/**/*.swift'
 end

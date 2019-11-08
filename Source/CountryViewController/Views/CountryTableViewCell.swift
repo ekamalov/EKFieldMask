@@ -43,7 +43,7 @@ final public class CountryTableViewCell: UITableViewCell {
     
     internal func update(_ country:Country, preferences: EKFieldPreferences.CountryView.TableView.Cell){
         self.preferences = preferences
-        self.icon.image = UIImage(named: country.cc)
+        self.icon.image = UIImage(named: country.cc, in: .framework, compatibleWith: nil)
         countryName.text = country.localizeName
         dialCode.text = "+\(country.dialCode)"
         countryName.sizeToFit()

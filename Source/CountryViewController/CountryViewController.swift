@@ -125,7 +125,7 @@ final public class CountryViewController: UIViewController {
             startAnimationIfNeeded(show: false) { self.animator.isReversed.toggle() }
             animator.pauseAnimation()
             animationProgress = animator.fractionComplete
-            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine")
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrowLine", in: .framework, compatibleWith: nil)
         case .changed:
             var fraction = recognizer.translation(in: momentumView).y / closedTransform.ty
             if animator.isReversed { fraction *= -1 }
@@ -138,7 +138,7 @@ final public class CountryViewController: UIViewController {
             if !animator.isReversed {
                 animator.addCompletion { _ in self.dismiss(animated: false, completion: nil) }
             }
-            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrow")
+            self.wrapperViewHeader.dropDownIcon.image = UIImage(named: "arrow", in: .framework, compatibleWith: nil)
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.8)
         default: break
         }

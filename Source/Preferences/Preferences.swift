@@ -95,9 +95,9 @@ public struct EKFieldPreferences {
         /// Use the cornerRadius property to change the corner radius of the field  . By default, uses 10px
         public var cornerRadius: CGFloat     = 10
         /// Use the leftIcon property to change the search icon of the search field in countriesViewController  . By default, uses search icon
-        public var leftIcon: UIImage?        = UIImage(named: "search") ?? nil
+        public var leftIcon: UIImage?        = UIImage(named: "search", in: .framework, compatibleWith: nil) ?? nil
         /// Use the clearButtonIcon property to change the clear icon of the field. By default, uses search icon
-        public var clearButtonIcon: UIImage? = UIImage.init(named: "clear") ?? nil
+        public var clearButtonIcon: UIImage? = UIImage.init(named: "clear", in: .framework, compatibleWith: nil) ?? nil
         /// The text font. By default bold system font with size 18
         public var font: UIFont              = UIFont(name: "Gilroy-SemiBold", size: 18) ?? .boldSystemFont(ofSize: 18)
         /// Use the tintColor property to change the color of the field tint . By default, uses black
